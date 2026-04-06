@@ -1,0 +1,107 @@
+---
+import RegularMenu from './RegularMenu.astro'
+import StikyMenu from './StikyMenu.astro'
+
+type Props = {
+	type?: 'lightBg'
+}
+const { type } = Astro.props as Props
+---
+
+<div
+	class='top-menu-switcher z-50'
+	data-top-menu
+>
+	<div
+		class='top-menu-switcher__sticky backdrop-blur-xl'
+		aria-hidden='true'
+	>
+		<StikyMenu />
+	</div>
+	<div
+		class='top-menu-switcher__regular'
+		data-regular-menu
+	>
+		<RegularMenu type={type} />
+	</div>
+</div>
+
+<script is:inline>
+	const topMenu = document.querySelector('[data-top-menu]')
+	const regularMenu = topMenu?.querySelector('[data-regular-menu]')
+	const threshold = 5
+	const isBurgerMenuOpen = () => document.body.classList.contains('burger-menu-body-lock')
+
+	if (topMenu && regularMenu) {
+		const syncMenus = () => {
+			if (isBurgerMenuOpen()) {
+				return
+			}
+
+			const { top } = regularMenu.getBoundingClientRect()
+			const shouldShowSticky = top <= -threshold
+
+			if (shouldShowSticky) {
+				topMenu.setAttribute('data-sticky-active', 'true')
+				return
+			}
+
+			topMenu.removeAttribute('data-sticky-active')
+		}
+
+		syncMenus()
+		window.addEventListener('scroll', syncMenus, { passive: true })
+		window.addEventListener('resize', syncMenus)
+		window.addEventListener('burger-menu:toggle', syncMenus)
+	}
+</script>
+
+<style>
+	.top-menu-switcher {
+		position: relative;
+		z-index: 100;
+		isolation: isolate;
+	}
+
+	.top-menu-switcher__regular {
+		transition:
+			opacity 180ms ease,
+			visibility 180ms ease;
+		will-change: opacity;
+	}
+
+	.top-menu-switcher__sticky {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 200;
+		opacity: 0;
+		visibility: hidden;
+		transition:
+			opacity 180ms ease,
+			visibility 180ms ease;
+		will-change: opacity;
+		pointer-events: none;
+		isolation: isolate;
+		transform: translate3d(0, calc(-100% - 5px), 0);
+		transition:
+			opacity 180ms ease,
+			visibility 180ms ease,
+			transform 220ms ease;
+		will-change: opacity, transform;
+	}
+
+	.top-menu-switcher[data-sticky-active='true'] .top-menu-switcher__regular {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+
+	.top-menu-switcher[data-sticky-active='true'] .top-menu-switcher__sticky {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: translate3d(0, 0, 0);
+	}
+</style>

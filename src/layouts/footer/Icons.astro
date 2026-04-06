@@ -1,0 +1,45 @@
+---
+import Icon1 from './assets/icon1.svg'
+import Icon2 from './assets/icon2.svg'
+import Icon3 from './assets/icon3.svg'
+---
+
+<div class='flex flex-col justify-between'>
+	<div class='flex flex-col justify-start'>
+		<div class='flex flex-col gap-[10px]'>
+			<img
+				src={Icon1.src}
+				class='icon'
+			/>
+			<img
+				src={Icon2.src}
+				class='icon'
+			/>
+			<img
+				src={Icon3.src}
+				class='icon'
+			/>
+		</div>
+	</div>
+	<div class='text-[#9598A7] text-[10px] font-tt-firs footer-padding hidden max-[700px]:block whitespace-nowrap'>
+		АНО «Евразия» ©
+	</div>
+</div>
+
+<style>
+	.icon {
+		width: 140px;
+		height: auto;
+	}
+
+	@media screen and (max-width: 1150px) {
+		.icon {
+			width: 120px;
+		}
+	}
+	@media screen and (max-width: 600px) {
+		.icon {
+			width: 80px;
+		}
+	}
+</style>

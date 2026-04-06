@@ -1,0 +1,453 @@
+---
+import Burger from '../assets/burger.svg'
+import BurgerLight from '../assets/burger-light.svg'
+import { TOP_MENU_LINKS } from '../data/menuLinks'
+import SocialIcons from '@/layouts/footer/components/SocialIcons.astro'
+
+type Props = {
+	type?: 'sticky' | 'lightBg'
+}
+
+const { type } = Astro.props as Props
+
+const navCabinet = [
+	{
+		label: 'Мои заявки',
+		href: '/cabinet/orders',
+		count: ''
+	},
+	{
+		label: 'Мои задания',
+		href: '/cabinet/tasks',
+		count: ''
+	},
+	{
+		label: 'Уведомления',
+		href: '/cabinet/notifications',
+		count: '3'
+	},
+]
+
+const isSticky = type === 'sticky'
+const isLightBg = type === 'lightBg'
+const panelId = `burger-menu-panel-${type ?? 'default'}`
+---
+
+<div
+	class=`burger-menu ${isSticky ? 'sticky' : ''} ${isLightBg ? 'dark-mode' : ''}`
+	data-burger-menu
+>
+	<button
+		type='button'
+		class='burger transition-colors duration-200'
+		data-burger-trigger
+		style={`--burger-icon: url('${isLightBg ? BurgerLight.src : Burger.src}')`}
+		aria-controls={panelId}
+		aria-expanded='false'
+		aria-label='Открыть меню'
+	>
+		<span
+			class='burger__icon'
+			aria-hidden='true'
+		></span>
+	</button>
+
+	<div
+		class='burger-menu__overlay'
+		data-burger-overlay
+		aria-hidden='true'
+	>
+	</div>
+
+	<aside
+		id={panelId}
+		class='burger-menu__panel '
+		data-burger-panel
+		aria-hidden='true'
+	>
+		<div class='burger-menu__scroll flex flex-col justify-between'>
+			<div class='burger-menu__top'>
+
+				<button
+					type='button'
+					class='burger-menu__close'
+					data-burger-close
+					aria-label='Закрыть меню'
+				>
+					<img
+						src='/images/burger-menu/close.svg'
+						alt='Закрыть'
+					/>
+				</button>
+			</div>
+
+			<nav class='burger-menu__links'>
+				{
+					navCabinet.map(link => (
+						<a
+							href={link.href}
+							class='burger-menu__link flex gap-2'
+							data-burger-link
+						>
+							{link.label}
+
+							{link.count !== '' && (
+								<span class='ml-1 text-xl text-white-text w-6 h-6 text-center flex items-center justify-center bg-accent rounded-full'>
+									{link.count}
+								</span>
+							)}
+						</a>
+					))
+				}
+			</nav>
+
+			<div class='burger-menu__contacts'>
+				<div class='burger-menu__contacts-title'>Контактный центр</div>
+				<a
+					href='tel:+78009000000'
+					class='burger-menu__phone'
+				>
+					8 (800) 900 00 00
+				</a>
+				<a
+					href='tel:+74958016200'
+					class='burger-menu__phone'
+				>
+					+7 (495) 801 62 00
+				</a>
+				<div class='burger-menu__schedule'>Пн–Пт, 10:00–19:00 (МСК)</div>
+			</div>
+
+			<div class='burger-menu__socials'>
+				<SocialIcons />
+			</div>
+
+			<div class='burger-menu__emails'>
+				<div class='burger-menu__email-block'>
+					<div class='burger-menu__email-label'>Орг. комитет:</div>
+					<a
+						href='mailto:org@premiyaevrazia.su'
+						class='burger-menu__email-link'
+					>
+						org@premiyaevrazia.su
+					</a>
+				</div>
+				<div class='burger-menu__email-block'>
+					<div class='burger-menu__email-label'>Тех. поддержка:</div>
+					<a
+						href='mailto:support@premiyaevrazia.su'
+						class='burger-menu__email-link'
+					>
+						support@premiyaevrazia.su
+					</a>
+				</div>
+			</div>
+		</div>
+	</aside>
+</div>
+
+<script is:inline>
+	;(() => {
+		const burgerMenus = document.querySelectorAll('[data-burger-menu]')
+
+		burgerMenus.forEach(root => {
+			if (root.dataset.initialized === 'true') {
+				return
+			}
+			root.dataset.initialized = 'true'
+
+			const trigger = root.querySelector('[data-burger-trigger]')
+			const panel = root.querySelector('[data-burger-panel]')
+			const overlay = root.querySelector('[data-burger-overlay]')
+			const closeButton = root.querySelector('[data-burger-close]')
+			const links = root.querySelectorAll('[data-burger-link]')
+
+			if (!trigger || !panel || !overlay || !closeButton) {
+				return
+			}
+
+			// Safari may clip fixed descendants when an ancestor has overflow hidden.
+			// Move drawer layers to body so they always render above the full page.
+			if (overlay.parentElement !== document.body) {
+				document.body.appendChild(overlay)
+			}
+			if (panel.parentElement !== document.body) {
+				document.body.appendChild(panel)
+			}
+
+			const setOpen = isOpen => {
+				root.setAttribute('data-open', isOpen ? 'true' : 'false')
+				trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false')
+				panel.setAttribute('aria-hidden', isOpen ? 'false' : 'true')
+				panel.setAttribute('data-open', isOpen ? 'true' : 'false')
+				overlay.setAttribute('data-open', isOpen ? 'true' : 'false')
+				panel.toggleAttribute('inert', !isOpen)
+				document.body.classList.toggle('burger-menu-body-lock', isOpen)
+				window.dispatchEvent(new Event('burger-menu:toggle'))
+			}
+
+			const close = () => setOpen(false)
+			const open = () => setOpen(true)
+
+			trigger.addEventListener('click', () => {
+				const isOpen = root.getAttribute('data-open') === 'true'
+				if (isOpen) {
+					close()
+					return
+				}
+				open()
+			})
+
+			closeButton.addEventListener('click', close)
+			overlay.addEventListener('click', close)
+
+			links.forEach(link => {
+				link.addEventListener('click', close)
+			})
+
+			document.addEventListener('keydown', event => {
+				if (event.key === 'Escape' && root.getAttribute('data-open') === 'true') {
+					close()
+				}
+			})
+		})
+	})()
+</script>
+
+<style>
+	.burger {
+		display: none;
+		cursor: pointer;
+		background-color: var(--color-white-bg);
+		padding: 0;
+		border: 1px solid transparent;
+		transition:
+			background-color 200ms ease,
+			border-color 200ms ease;
+	}
+	.burger__icon {
+		display: block;
+		width: 17px;
+		height: 12px;
+		background-color: #a97444;
+		-webkit-mask-image: var(--burger-icon);
+		mask-image: var(--burger-icon);
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		-webkit-mask-position: center;
+		mask-position: center;
+		-webkit-mask-size: contain;
+		mask-size: contain;
+		transition: background-color 200ms ease;
+	}
+	.burger-menu {
+		z-index: 1000000000;
+	}
+
+	.burger-menu.dark-mode .burger {
+		background: #c5985e;
+		border-color: #c5985e;
+	}
+
+	.burger-menu.dark-mode .burger__icon {
+		background-color: #ebebeb;
+	}
+
+	.burger-menu.sticky .burger {
+		border: 1px solid var(--color-accent);
+		background: none;
+	}
+
+	.burger:hover {
+		opacity: 0.8;
+	}
+
+	.burger-menu__overlay {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.2);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition: opacity 200ms;
+		z-index: 900;
+	}
+
+	.burger-menu__panel {
+		position: fixed;
+		top: 0;
+		right: 100%;
+		left: auto;
+		width: min(80vw, 340px);
+		height: 100vh;
+		background: #ffffff;
+		color: var(--color-dark-blue);
+		transition: transform 220ms ease;
+		z-index: 910;
+	}
+
+	.burger-menu__scroll {
+		height: 100%;
+		overflow-y: auto;
+		overflow-x: hidden;
+		overscroll-behavior: contain;
+		padding: 30px 10px 40px;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+
+	.burger-menu__scroll::-webkit-scrollbar {
+		display: none;
+	}
+
+	.burger-menu__top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 41px;
+	}
+
+	.burger-menu__logo,
+	.burger-menu__close {
+		cursor: pointer;
+		transition: opacity 200ms;
+	}
+	.burger-menu__close{
+		margin-left: auto;
+	}
+
+	.burger-menu__logo:hover,
+	.burger-menu__close:hover {
+		opacity: 0.8;
+	}
+
+	.burger-menu__logo img {
+		display: block;
+		width: 152px;
+		height: auto;
+	}
+
+	.burger-menu__close {
+		padding: 0;
+		border: 0;
+		background: none;
+	}
+
+	.burger-menu__close img {
+		display: block;
+		width: 42px;
+		height: auto;
+	}
+
+	.burger-menu__links {
+		display: flex;
+		flex-direction: column;
+		padding-left: 50px;
+		gap: 30px;
+		margin: 0 0 auto;
+	}
+
+	.burger-menu__link {
+		font-size: 20px;
+		font-weight: 400;
+		line-height: 1.25;
+		color: var(--color-dark-blue);
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+	.burger-menu__link:hover {
+		text-decoration: underline;
+	}
+
+	.burger-menu__contacts {
+		margin-top: 40px;
+		padding-left: 50px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.burger-menu__contacts-title {
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 20px;
+	}
+
+	.burger-menu__phone {
+		font-size: 16px;
+		line-height: 20px;
+		font-weight: 500;
+		margin: -4px 0 0;
+		color: var(--color-dark-blue);
+		text-decoration: none;
+	}
+
+	.burger-menu__phone:hover {
+		text-decoration: underline;
+	}
+
+	.burger-menu__schedule {
+		margin-top: 6px;
+		color: #9598a7;
+		font-size: 14px;
+		line-height: 21px;
+	}
+
+	.burger-menu__socials {
+		margin-top: 30px;
+		padding-left: 50px;
+	}
+
+	.burger-menu__emails {
+		padding-left: 50px;
+		display: flex;
+		margin: 30px 0 0;
+		flex-direction: column;
+		gap: 19px;
+	}
+
+	.burger-menu__email-label {
+		font-size: 10px;
+		line-height: 1.2;
+		margin: 0 0 4px;
+	}
+
+	.burger-menu__email-link {
+		font-size: 16px;
+		line-height: 1.25;
+		color: var(--color-dark-blue);
+		text-decoration: underline;
+	}
+
+	.burger-menu__email-link:hover {
+		text-decoration: none;
+	}
+
+	.burger-menu__overlay[data-open='true'] {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+
+	.burger-menu__panel[data-open='true'] {
+		right: 0;
+	}
+
+	:global(body.burger-menu-body-lock) {
+		overflow: hidden;
+	}
+
+	@media screen and (max-width: 1350px) {
+		.burger {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 8px;
+			width: 33px;
+			height: 28px;
+			bottom: 1px;
+		}
+	}
+</style>

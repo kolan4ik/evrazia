@@ -1,0 +1,35 @@
+---
+import QuoteLeft from './assets/quote-left.svg'
+import QuoteRight from './assets/quote-right.svg'
+
+type Props = {
+	text: string
+}
+const { text } = Astro.props as Props
+
+const words = text.trim().split(' ')
+const lastWord = words.pop()
+const mainText = words.join(' ')
+---
+
+<div class='flex flex-row justify-start items-start gap-[5px] min-[700px]:gap-[12px]'>
+	<div
+		class='w-[18px] relative max-[700px]:top-[2px] max-[700px]:w-[9px] max-[1200px]:w-[14px] h-auto shrink-0 overflow-hidden'
+	>
+		<img
+			src={QuoteLeft.src}
+			aria-hidden='true'
+		/>
+	</div>
+	<div class='person-card__quote italic!'>
+		{mainText}
+		<span class='whitespace-nowrap'>
+			&nbsp;{lastWord}
+			<img
+				src={QuoteRight.src}
+				aria-hidden='true'
+				class='inline ml-[2px] relative max-[700px]:top-0 min-[700px]:ml-[12px] align-middle w-[18px] max-[700px]:w-[9px] max-[1200px]:w-[14px] h-auto shrink-0'
+			/>
+		</span>
+	</div>
+</div>

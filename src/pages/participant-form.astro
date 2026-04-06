@@ -1,0 +1,25 @@
+---
+import RegularMenu from '@/components/shared/topMenu/RegularMenu.astro'
+import { ParticipantForm as ParticipantFormComponent } from '@/components/participantForm/ParticipantForm'
+import Layout from '@/layouts/Layout.astro'
+---
+
+<Layout noindex={true}>
+	<section class='content flex flex-col'>
+		<RegularMenu type='lightBg' />
+
+		<div
+			class='inner-content grid grid-cols-1 min-[1000px]:grid-cols-2 gap-x-[70px] items-start justify-start gap-y-[60px]'
+		>
+			<div class='flex flex-col justify-start'>
+				<h1>Форма подачи заявки</h1>
+				<div class='max-w-[430px] mt-[10px]'>Пожалуйста полностью заполните профиль участника и данные заявки.</div>
+				<div class='max-w-[430px] mt-[10px]'>Указывайте только действительную информацию!</div>
+			</div>
+
+			<div>
+				<ParticipantFormComponent client:load />
+			</div>
+		</div>
+	</section>
+</Layout>

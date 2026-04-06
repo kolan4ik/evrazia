@@ -1,0 +1,22 @@
+.popover {
+	width: 320px;
+	border-radius: 16px;
+	background: #ffffff;
+	padding: 12px;
+	box-shadow: 0 26px 70px rgba(21, 37, 81, 0.12);
+	border: 1px solid rgba(220, 220, 220, 0.85);
+}
+
+.calendar {
+	width: 100%;
+	padding: 0;
+	background: transparent;
+}
+
+@media (max-width: 768px) {
+	.popover {
+		width: 290px;
+		padding: 10px;
+		border-radius: 12px;
+	}
+}

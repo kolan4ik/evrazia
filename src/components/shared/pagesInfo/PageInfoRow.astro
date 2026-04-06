@@ -1,0 +1,144 @@
+---
+interface Props {
+	class?: string
+}
+
+const { class: className = '' } = Astro.props
+---
+
+<section class={`section-block mb-[36px] ${className}`}>
+	<div
+		class='grid grid-cols-[77px_minmax(0,1fr)] gap-x-[40px] gap-y-0 mb-[20px]
+      min-[1100px]:grid-cols-[50px_310px_minmax(0,1fr)] min-[1100px]:mb-[10px]
+      max-[999px]:grid-cols-[40px_minmax(0,1fr)] max-[999px]:gap-x-[20px] max-[999px]:gap-y-[18px]
+      max-[699px]:grid-cols-[30px_minmax(0,1fr)] max-[699px]:gap-x-[10px] max-[699px]:gap-y-[12px]'
+	>
+		<!-- number -->
+		<div class='section-number self-start text-left'>
+			<slot name='number' />
+		</div>
+
+		<!-- title -->
+		<div class='section-title self-start'>
+			<slot name='title' />
+		</div>
+
+		<!-- content -->
+		<div
+			class='section-content
+        col-span-2 col-start-1
+        justify-self-end w-[600px] max-w-full
+        min-[1100px]:col-span-1 min-[1100px]:col-start-3 min-[1100px]:w-auto min-[1100px]:justify-self-stretch
+        max-[699px]:col-span-2 max-[699px]:col-start-1 max-[699px]:w-full max-[699px]:justify-self-stretch'
+		>
+			<slot name='content' />
+		</div>
+	</div>
+</section>
+
+<style>
+	.section-content {
+		color: #1f3268;
+	}
+	.section-number,
+	.section-title {
+		font-size: 28px;
+		font-weight: 500;
+		line-height: 1.3;
+		text-transform: none;
+		color: #1f3268;
+	}
+
+	/* H1 */
+	.section-content :global(h1) {
+		font-size: 32px;
+		font-weight: 500;
+		line-height: 1.25;
+		color: var(--accent);
+		margin-bottom: 24px;
+	}
+
+	/* H2 */
+	.section-title :global(h1),
+	.section-title :global(h2),
+	.section-title :global(h3),
+	.section-title :global(h4),
+	.section-title :global(h5),
+	.section-title :global(h6),
+	.section-number :global(h1),
+	.section-number :global(h2),
+	.section-number :global(h3),
+	.section-number :global(h4),
+	.section-number :global(h5),
+	.section-number :global(h6) {
+		font-size: inherit;
+		font-weight: inherit;
+		line-height: inherit;
+		text-transform: none;
+		font-family: var(--font-tt-firs);
+		color: inherit;
+		margin: 0;
+	}
+
+	.section-number > :global(:first-child),
+	.section-title > :global(:first-child) {
+		margin-top: 0;
+	}
+	.section-number > :global(:last-child),
+	.section-title > :global(:last-child) {
+		margin-bottom: 0;
+	}
+
+	/* Paragraph */
+	.section-content :global(p) {
+		font-size: 18px;
+		line-height: 27px;
+		margin-bottom: 36px;
+	}
+
+	.section-content :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	@media screen and (max-width: 999px) {
+		.section-number,
+		.section-title {
+			font-size: 22px;
+		}
+
+		.section-content :global(h1) {
+			font-size: 26px;
+		}
+
+		.section-content :global(p),
+		.section-content :global(li) {
+			font-size: 16px;
+			line-height: 24px;
+		}
+
+		.section-content :global(p) {
+			margin-bottom: 24px;
+		}
+	}
+
+	@media screen and (max-width: 699px) {
+		.section-number,
+		.section-title {
+			font-size: 18px;
+		}
+
+		.section-content :global(h1) {
+			font-size: 21px;
+		}
+
+		.section-content :global(p),
+		.section-content :global(li) {
+			font-size: 14px;
+			line-height: 21px;
+		}
+
+		.section-content :global(p) {
+			margin-bottom: 12px;
+		}
+	}
+</style>

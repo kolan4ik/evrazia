@@ -1,0 +1,47 @@
+---
+import Contacts from './Contacts.astro'
+import Icons from './Icons.astro'
+import InfoColumn from './InfoColumn.astro'
+import MenuLinks from './MenuLinks.astro'
+---
+
+<footer class='mt-[100px]! bg-dark-blue text-white-text pt-[40px]! min-[1150px]:pt-[100px]! pb-[50px]!'>
+	<div class='flex flex-col w-full content footer-padding'>
+		<section class='block min-[1150px]:hidden mb-[30px] min-[767px]:mb-[40px]'>
+			<MenuLinks />
+		</section>
+		<section class='block min-[767px]:hidden mb-[40px]'>
+			<Contacts />
+		</section>
+	</div>
+	<div class='flex flex-row gap-[60px] justify-start min-[767px]:gap-0 min-[767px]:justify-between footer-padding'>
+		<!-- Первая колонка -->
+		<Icons />
+		<!-- Контакты -->
+		<section class='hidden min-[767px]:block'>
+			<Contacts />
+		</section>
+
+		<!-- Меню -->
+		<section class='hidden min-[1150px]:block'>
+			<MenuLinks />
+		</section>
+
+		<!-- Последняя колонка -->
+		<InfoColumn />
+	</div>
+	<div class='text-[#9598A7] text-[12px] footer-padding max-[700px]:hidden'>АНО «Евразия» ©</div>
+</footer>
+
+<style>
+	.footer-padding {
+		max-width: 1440px;
+		margin: auto;
+		padding: 0 20px 36px !important;
+	}
+	@media screen and (max-width: 767px) {
+		.footer-padding {
+			padding: 0 35px !important;
+		}
+	}
+</style>

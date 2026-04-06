@@ -1,0 +1,22 @@
+---
+import Logo1 from '../assets/logo-dark.svg'
+import Logo2 from '../assets/logo2-dark.svg'
+import Line from '../assets/line-dark.svg'
+---
+
+<div class='flex flex-col min-[767px]:flex-row justify-start items-center gap-[20px] min-[767px]:gap-[26px]'>
+	<a href='/'>
+		<img
+			src={Logo1.src}
+			class='h-auto w-[152px] min-[767px]:w-[213px] min-[1350px]:w-[213px]'
+		/>
+	</a>
+	<img
+		src={Line.src}
+		class='hidden min-[767px]:block'
+	/>
+	<img
+		src={Logo2.src}
+		class='relative left-[20px] min-[767px]:left-0 h-auto w-[110px] max-[767px]:hidden min-[1350px]:w-[110px] min-[1350px]:bottom-[4px]'
+	/>
+</div>

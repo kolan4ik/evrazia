@@ -1,0 +1,250 @@
+.root {
+	width: 100%;
+}
+
+.zone {
+	width: 100%;
+	min-height: 180px;
+	padding: 15px 20px;
+	border: 1px solid #dcdcdc;
+	border-radius: 12px;
+	background: transparent;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.zone:hover,
+.zone:active,
+.zoneActive {
+	background: #ececec;
+}
+
+.zoneEmpty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.hiddenInput {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.emptyStateButton {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	width: 100%;
+	min-height: 148px;
+	padding: 0;
+	border: none;
+	background: transparent;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 400;
+	color: #152551;
+	cursor: pointer;
+	text-align: center;
+	transition: color 0.2s ease;
+}
+
+.zone:hover .emptyStateButton,
+.zoneActive .emptyStateButton,
+.emptyStateButton:hover {
+	color: var(--accent);
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.fileList {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.fileItem {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.fileRow {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	min-width: 0;
+}
+
+.fileMeta {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex: 1;
+	min-width: 0;
+	color: #152551;
+}
+
+.fileMetaError {
+	color: #949494;
+}
+
+.fileIconWrap {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.fileIcon {
+	display: block;
+}
+
+.fileTitle {
+	display: block;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+.fileActions {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	flex-shrink: 0;
+	min-width: 0;
+}
+
+.uploadState {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	min-width: 0;
+	width: 220px;
+}
+
+.progressValue,
+.fileSize {
+	font-size: 14px;
+	line-height: 18px;
+	color: #152551;
+	white-space: nowrap;
+}
+
+.fileSizeError {
+	color: #949494;
+}
+
+.progressTrack {
+	flex: 1;
+	height: 4px;
+	border-radius: 999px;
+	background: #d9d9d9;
+	overflow: hidden;
+}
+
+.progressFill {
+	height: 100%;
+	border-radius: inherit;
+	background: #c5985e;
+	transition: width 0.15s linear;
+}
+
+.iconButton,
+.retryButton,
+.addFileButton {
+	padding: 0;
+	border: none;
+	background: transparent;
+	font: inherit;
+	cursor: pointer;
+}
+
+.iconButton {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: #152551;
+	transition: opacity 0.2s ease;
+}
+
+.iconButton:hover {
+	opacity: 0.65;
+}
+
+.fileErrorRow {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding-left: 30px;
+	font-size: 14px;
+	line-height: 18px;
+	color: #949494;
+}
+
+.retryButton,
+.addFileButton {
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	color: inherit;
+}
+
+.retryButton:hover,
+.addFileButton:hover {
+	text-decoration: none;
+}
+
+.addFileButton {
+	align-self: flex-start;
+	font-size: 14px;
+	line-height: 18px;
+	color: #152551;
+}
+
+.generalError {
+	margin: 8px 0 0;
+	font-size: 10px;
+	line-height: 12px;
+	color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+	.zone {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	.emptyStateButton {
+		font-size: 10px;
+		line-height: 14px;
+	}
+
+	.fileTitle,
+	.progressValue,
+	.fileSize,
+	.fileErrorRow,
+	.addFileButton {
+		font-size: 12px;
+		line-height: 16px;
+	}
+
+	.uploadState {
+		gap: 12px;
+		width: 140px;
+	}
+}

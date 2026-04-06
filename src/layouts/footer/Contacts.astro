@@ -1,0 +1,46 @@
+---
+import { cn } from '@/lib/utils'
+import SocialIcons from './components/SocialIcons.astro'
+---
+
+<div class='flex flex-col justify-start'>
+	<div
+		class={cn(
+			'flex flex-col text-white-text gap-[2px] min-[1150px]:gap-[6px]',
+			'text-[16px] leading-[20px]',
+			'min-[767px]:text-[20px] min-[767px]:leading-[24px]',
+			'min-[1150px]:text-[24px] min-[1150px]:leading-[35px]',
+		)}
+	>
+		<div>Контактный центр</div>
+		<div class='grid grid-cols-2 min-[767px]:grid-cols-1 max-[400px]:text-[14px]'>
+			<div>
+				<a
+					href='tel:+78009000000'
+					class='text-link'
+					>8 (800) 900 00 00</a
+				>
+			</div>
+			<div>
+				<a
+					href='tel:+74958016200'
+					class='text-link'
+					>+7 (495) 801 62 00</a
+				>
+			</div>
+		</div>
+	</div>
+	<div
+		class={cn(
+			'mt-[18px] text-[#9598A7] font-light',
+			'text-[14px]',
+			'min-[767px]:text-[16px]',
+			'min-[1150px]:text-[18px]',
+		)}
+	>
+		Пн–Пт, 10:00–19:00 (МСК)
+	</div>
+	<div class='mt-[34px] min-[1150px]:mt-[68px]'>
+		<SocialIcons />
+	</div>
+</div>

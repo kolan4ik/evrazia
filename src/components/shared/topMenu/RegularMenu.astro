@@ -1,0 +1,21 @@
+---
+import BurgerMenu from './widgets/BurgerMenu.astro'
+import LineMenu from './components/LineMenu.astro'
+import Logo from './components/Logo.astro'
+import LogoDark from './components/LogoDark.astro'
+
+type Props = {
+	type?: 'lightBg'
+}
+const { type } = Astro.props as Props
+---
+
+<nav class='w-full min-h-[73px] z-40 relative flex flex-row items-start min-[767px]:items-center justify-between'>
+	{type !== 'lightBg' ? <Logo /> : <LogoDark />}
+	<div class='flex flex-row justify-end items-stretch gap-[80px]'>
+		<LineMenu type={type} />
+		<div class='flex justify-end items-center mt-[10px] min-[767px]:mt-0'>
+			<BurgerMenu type={type} />
+		</div>
+	</div>
+</nav>

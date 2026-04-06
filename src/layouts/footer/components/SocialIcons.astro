@@ -1,0 +1,39 @@
+---
+const socials = [
+	{ icon: '/images/tg.svg', alt: 'Telegram' },
+	{ icon: '/images/vk.svg', alt: 'VK' },
+	{ icon: '/images/msg.svg', alt: 'Messenger' },
+]
+---
+
+<div class='social-icons'>
+	{
+		socials.map((social) => (
+			<img
+				src={social.icon}
+				alt={social.alt}
+				class='social-icons__item'
+			/>
+		))
+	}
+</div>
+
+<style>
+	.social-icons {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+
+	.social-icons__item {
+		display: block;
+		cursor: pointer;
+		transition: opacity 200ms;
+		width: 30px;
+		height: 30px;
+	}
+
+	.social-icons__item:hover {
+		opacity: 0.8;
+	}
+</style>

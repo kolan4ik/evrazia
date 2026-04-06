@@ -1,0 +1,26 @@
+---
+import BurgerMenu from './widgets/BurgerMenu.astro'
+import LineMenu from './components/LineMenu.astro'
+import SmallLogo from './components/SmallLogo.astro'
+---
+
+<nav class='sticky-menu-nav h-[50px] flex justify-center'>
+	<div class='content-width flex flex-row items-center justify-between'>
+		<SmallLogo />
+		<div class='flex flex-row justify-end items-center gap-[80px]'>
+			<LineMenu type='sticky' />
+			<div class='flex justify-end items-center mt-[6px] min-[767px]:mt-0'>
+				<BurgerMenu type='sticky' />
+			</div>
+		</div>
+	</div>
+</nav>
+
+<style>
+	.sticky-menu-nav {
+		position: relative;
+		z-index: 1;
+		background: rgba(235, 235, 235, 0.82);
+		isolation: isolate;
+	}
+</style>

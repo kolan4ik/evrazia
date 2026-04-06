@@ -1,0 +1,28 @@
+---
+import RegularMenu from '@/components/shared/topMenu/RegularMenu.astro'
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout noindex={true}>
+	<section class='content flex flex-col'>
+		<RegularMenu type='lightBg' />
+		<div class='inner-content flex flex-col'>
+			<h1>Страница<br />не найдена</h1>
+			<div class='max-w-[600px] mt-[10px]'>
+				Запрашиваемая страница не существует или была перемещена.<br /> Проверьте адрес или перейдите на главную страницу.
+			</div>
+			<a
+				href='/'
+				class='action-btn'
+				>На главную</a
+			>
+			<button
+				type='button'
+				class='text-link mt-[20px] self-start'
+				onclick="if (window.history.length > 1) { window.history.back(); } else { window.location.href = '/'; }"
+			>
+				Вернуться назад
+			</button>
+		</div>
+	</section>
+</Layout>
