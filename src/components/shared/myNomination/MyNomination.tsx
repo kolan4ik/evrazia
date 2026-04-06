@@ -89,7 +89,7 @@ export default function MyNomination() {
                 <img src={item.img} alt={'icon nomination'} width={70} height={70} className={'w-10 h-10 lg:w-17.5 lg:h-17.5 -mb-0.5 lg:mb-0'}/>
                 <p className="text-base lg:text-2xl lg:-mb-2.5 -mb-1.5 font-medium text-accent">{item.title}</p>
                 <p dangerouslySetInnerHTML={{__html: item.text}}></p>
-                <button disabled={item.soon} className={`text-xs! lg:text-sm! mt-auto font-medium  text-[#ebebeb]! lg:px-3 lg:py-2.5 px-2.5 py-1.5 rounded-lg 
+                <button disabled={item.soon} className={`text-xs! cursor-pointer lg:text-sm! mt-auto font-medium  text-[#ebebeb]! lg:px-3 lg:py-2.5 px-2.5 py-1.5 rounded-lg 
                 ${item.soon ? 'bg-[#b8b8b8]' : "bg-accent"}`}>
                     {item.soon ? 'Откроется позднее' : 'Подать заявку'}
                 </button>
@@ -105,7 +105,7 @@ export default function MyNomination() {
                 <div className="lg:w-80 w-50 mb-6 lg:mb-0 text-[10px] lg:text-sm text-left text-[#ebebeb]">
                     Выполняйте задания в разделе «Мои задания» и повышайте итоговую оценку. <br/> Баллы можно обменять на призы.
                 </div>
-                <a href={'#'} className={`text-xs lg:text-sm mt-auto font-medium  text-[#ebebeb]! lg:px-3 lg:py-2.5 px-[17px] py-2.5 rounded-sm lg:rounded-lg bg-accent`}>
+                <a href={'#'} className={`text-xs cursor-pointer lg:text-sm mt-auto font-medium  text-[#ebebeb]! lg:px-3 lg:py-2.5 px-[17px] py-2.5 rounded-sm lg:rounded-lg bg-accent`}>
                     Перейти к заданиям
                 </a>
             </div>
