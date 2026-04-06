@@ -1,0 +1,20 @@
+---
+import CabinetMenu from '@/components/shared/topMenu/CabinetMenu.astro'
+import Layout from '@/layouts/Layout.astro'
+import CabinetLeft from '@/components/shared/cabinetLeft/CabinetLeft'
+import CabinetTasks from '@/components/shared/cabinetTasks/CabinetTasks'
+
+---
+
+<Layout noindex={true}>
+	<section class='content flex flex-col'>
+		<CabinetMenu type="lightBg" />
+
+		<div class="flex lg:pt-18 pt-4 -mb-20">
+			<CabinetLeft/>
+			<CabinetTasks />
+		</div>
+	</section>
+</Layout>
+
+

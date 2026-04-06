@@ -11,6 +11,7 @@ export const PATHS = {
   cabinet: {
     orders: "/cabinet/orders",
     notifications: "/cabinet/notifications",
+    tasks: "cabinet/tasks",
   },
   privacy: "/privacy",
 };
