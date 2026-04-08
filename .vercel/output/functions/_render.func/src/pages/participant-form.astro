@@ -1,0 +1,57 @@
+---
+import RegularMenu from '@/components/shared/topMenu/RegularMenu.astro'
+import { ParticipantForm as ParticipantFormComponent } from '@/components/participantForm/ParticipantForm'
+import Layout from '@/layouts/Layout.astro'
+import { AUTH_TOKEN_KEY } from '@/lib/api/config'
+import { PATHS } from '@/configs/paths'
+import { createServerApi } from '@/lib/api/server'
+import { getAuthorizedProfile } from '@/lib/auth/getAuthorizedProfile'
+import { findNominationByRouteValue, getDictionaryRouteValue, getParticipantFormNominationId } from '@/lib/nominations'
+
+export const prerender = false
+
+const nominationId = getParticipantFormNominationId(Astro.url.searchParams)
+
+const requestCookie = Astro.request.headers.get('cookie') ?? ''
+
+const serverApi = createServerApi({
+	origin: Astro.url.origin,
+	cookieHeader: requestCookie,
+})
+
+const nominationsResult = await serverApi.dictionaries.getNominationsList()
+
+const statusesResult = await serverApi.dictionaries.getRequestStatusesList()
+
+const selectedNomination = findNominationByRouteValue(nominationsResult.payload, nominationId)
+
+const initialStatus = statusesResult.payload.map(getDictionaryRouteValue).find(Boolean)
+
+---
+
+<Layout noindex={true}>
+	<section class='content flex flex-col'>
+		<RegularMenu type='lightBg' />
+
+		<div
+			class='inner-content grid grid-cols-1 items-start justify-start gap-x-[70px] gap-y-[60px] min-[1000px]:grid-cols-2'
+		>
+				<div class='participant-form-page-intro flex flex-col justify-start'>
+						<h1>Форма подачи заявки</h1>
+						<div class='mt-[10px] max-w-[430px]'>Пожалуйста полностью заполните профиль участника и данные заявки.</div>
+						<div class='mt-[10px] max-w-[430px]'>Указывайте только действительную информацию!</div>
+						<div class='mt-[10px] max-w-[430px] text-[16px] leading-[24px] text-[#152551]/80'>
+							Номинация: name
+						</div>
+					</div>
+
+			<div class='w-full min-w-0'>
+				<ParticipantFormComponent
+					client:load
+					initialNominationId={nominationId}
+					initialStatus={initialStatus}
+				/>
+			</div>
+		</div>
+	</section>
+</Layout>

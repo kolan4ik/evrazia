@@ -1,0 +1,84 @@
+---
+import { API_BASE_URL, AUTH_TOKEN_KEY } from '@/lib/api/config'
+import { PATHS } from '@/configs/paths'
+import Layout from '../layouts/Layout.astro'
+import CabinetMenu from '@/components/shared/topMenu/CabinetMenu.astro'
+import CabinetLeft from '@/components/shared/cabinetLeft/CabinetLeft'
+import { createServerApi } from '@/lib/api/server'
+import NominationCard from '@/components/shared/nomitationCard/NominationCard.astro'
+import { getAuthorizedProfile } from '@/lib/auth/getAuthorizedProfile'
+import { getNominationHref } from '@/lib/nominations'
+
+export const prerender = false
+
+const token = Astro.cookies.get(AUTH_TOKEN_KEY)?.value
+
+if (!token) {
+	return Astro.redirect(PATHS.auth.register)
+}
+
+const requestCookie = Astro.request.headers.get('cookie') ?? ''
+
+const profileResult = await getAuthorizedProfile({
+	origin: Astro.url.origin,
+	cookieHeader: requestCookie,
+	token,
+})
+if (profileResult.status === 'error') {
+	return Astro.redirect(PATHS.auth.register)
+}
+const profile = profileResult.payload
+
+const serverApi = createServerApi({
+	origin: Astro.url.origin,
+	cookieHeader: requestCookie,
+})
+
+// 2. Get Nominations
+const nominationsResult = await serverApi.dictionaries.getNominationsList()
+const nominations = nominationsResult.status === 'ok' ? nominationsResult.payload : []
+---
+
+<Layout noindex={true}>
+	<section class='content flex flex-col'>
+		<CabinetMenu
+			type='lightBg'
+			profile={profile}
+		/>
+
+		<div class='flex flex-col min-[1000px]:flex-row lg:pt-18 pt-4 -mb-20 gap-[50px]'>
+			<CabinetLeft profile={profile} />
+			<div class='flex flex-col'>
+				<h1
+					class='text-[50px] leading-[50px] max-[900px]:text-[36px] max-[900px]:leading-[36px] font-light uppercase font-nyght-serif text-accent'
+				>
+					Номинации
+				</h1>
+
+				<div
+					class='mt-[20px] mb-[42px] max-[900px]:mt-[10px] max-[900px]:mb-[20px] text-[18px] leading-[27px] font-regular max-[900px]:text-[14px] max-[900px]:leading-[21px] max-[900px]:max-w-[410px]'
+				>
+					Вы можете подать до 3х заявок: по одной в каждую номинцию
+				</div>
+
+				<div class='grid grid-cols-2 gap-[10px] min-[900px]:grid-cols-3 min-[1200px]:gap-[40px] items-stretch'>
+					{
+						nominations.map(item => (
+							<a
+								href={getNominationHref(item)}
+								class='block h-full cursor-pointer focus:outline-none'
+							>
+								<NominationCard
+									img={item.picture ? API_BASE_URL + item.picture : ''}
+									title={item.name}
+									text={item.text || ''}
+									textFor={item.label || ''}
+								/>
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

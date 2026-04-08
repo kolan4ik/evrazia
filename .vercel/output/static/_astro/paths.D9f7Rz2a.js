@@ -1,0 +1,1 @@
+const t={root:"/",participantForm:"/participant-form/",tasks:"/tasks/",requests:"/requests/",notifications:"/notifications/",auth:{login:"/auth/login/",register:"/auth/register/",logout:"/auth/logout/",restore:"/auth/restore/",dashboard:{root:"/"}},account:{home:"/",tasks:"/tasks/",requests:"/requests/",notifications:"/notifications/"},privacy:"/privacy/"};export{t as P};

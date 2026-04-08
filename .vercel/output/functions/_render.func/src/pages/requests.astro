@@ -1,0 +1,115 @@
+---
+import { AUTH_TOKEN_KEY } from '@/lib/api/config'
+import { PATHS } from '@/configs/paths'
+import Layout from '../layouts/Layout.astro'
+import CabinetMenu from '@/components/shared/topMenu/CabinetMenu.astro'
+import CabinetLeft from '@/components/shared/cabinetLeft/CabinetLeft'
+import { createServerApi } from '@/lib/api/server'
+import { getAuthorizedProfile } from '@/lib/auth/getAuthorizedProfile'
+
+export const prerender = false
+
+const token = Astro.cookies.get(AUTH_TOKEN_KEY)?.value
+
+if (!token) {
+	return Astro.redirect(PATHS.auth.register)
+}
+
+const requestCookie = Astro.request.headers.get('cookie') ?? ''
+
+const profileResult = await getAuthorizedProfile({
+	origin: Astro.url.origin,
+	cookieHeader: requestCookie,
+	token,
+})
+
+if (profileResult.status === 'error') {
+	return Astro.redirect(PATHS.auth.register)
+}
+
+const profile = profileResult.payload
+
+const serverApi = createServerApi({
+	origin: Astro.url.origin,
+	cookieHeader: requestCookie,
+})
+
+const requestsResult = await serverApi.requests.list()
+console.log('[requests page] requests.list result:', requestsResult)
+const requests = requestsResult.status === 'ok' ? requestsResult.payload : []
+const requestEntries = await Promise.all(
+	requests.map(async item => {
+		const requestId = item.id
+		if (requestId === undefined || requestId === null || requestId === '') {
+			console.log('[requests page] request without id:', item)
+			return { listItem: item, details: null }
+		}
+
+		const detailsResult = await serverApi.requests.getById(requestId)
+		console.log('[requests page] request details result:', {
+			id: requestId,
+			result: detailsResult,
+		})
+		if (detailsResult.status === 'error') {
+			console.log('[requests page] request details error payload:', {
+				id: requestId,
+				code: detailsResult.payload.code,
+				status: detailsResult.payload.status,
+				message: detailsResult.payload.message,
+				details: detailsResult.payload.details,
+			})
+			console.log(
+				'[requests page] request details error json:',
+				JSON.stringify(detailsResult.payload.details, null, 2),
+			)
+		}
+
+		return {
+			listItem: item,
+			details: detailsResult.status === 'ok' ? detailsResult.payload : null,
+		}
+	}),
+)
+---
+
+<Layout noindex={true}>
+	<section class='content flex flex-col'>
+		<CabinetMenu
+			type='lightBg'
+			profile={profile}
+		/>
+
+		<div class='flex flex-col min-[1000px]:flex-row lg:pt-18 pt-4 -mb-20 gap-[50px]'>
+			<CabinetLeft profile={profile} />
+
+			<div class='flex flex-col min-w-0 flex-1'>
+				<h1
+					class='text-[50px] leading-[50px] max-[900px]:text-[36px] max-[900px]:leading-[36px] font-light uppercase font-nyght-serif text-accent'
+				>
+					Мои заявки
+				</h1>
+
+				<div class='mt-[20px] flex flex-col gap-[16px] text-[14px] leading-[20px] max-[900px]:mt-[10px] max-[900px]:text-[13px] max-[900px]:leading-[19px]'>
+					{
+						requestEntries.length > 0 ? (
+							requestEntries.map(({ listItem, details }) => (
+								<div class='border-b border-[#dcdcdc] pb-[16px]'>
+									<pre class='m-0 whitespace-pre-wrap break-words font-sans'>{JSON.stringify(listItem, null, 2)}</pre>
+									{
+										details ? (
+											<pre class='mt-[10px] m-0 whitespace-pre-wrap break-words font-sans text-[13px] leading-[18px] text-[#666]'>
+												{JSON.stringify(details, null, 2)}
+											</pre>
+										) : null
+									}
+								</div>
+							))
+						) : (
+							<div>Список заявок пуст</div>
+						)
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

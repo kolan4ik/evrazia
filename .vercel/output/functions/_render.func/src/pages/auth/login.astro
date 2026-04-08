@@ -1,0 +1,41 @@
+---
+import RegularMenu from '@/components/shared/topMenu/RegularMenu.astro'
+import Layout from '@/layouts/Layout.astro'
+import { LoginForm } from '@/components/auth/loginForm/LoginForm'
+import { PATHS } from '@/configs/paths'
+import { createServerApi } from '@/lib/api/server'
+
+export const prerender = false
+
+const serverApi = createServerApi({
+	origin: Astro.url.origin,
+	cookieHeader: Astro.request.headers.get('cookie') ?? '',
+})
+
+const profileResult = await serverApi.users.getProfile()
+
+if (profileResult.status === 'ok') {
+	return Astro.redirect(PATHS.root)
+}
+---
+
+<Layout noindex={true}>
+	<section class='content flex flex-col'>
+		<RegularMenu type='lightBg' />
+		<div class='inner-content grid grid-cols-1 min-[1000px]:grid-cols-2 items-start justify-start gap-y-[60px]'>
+			<div class='flex flex-col justify-start'>
+				<h1 class='max-w-[300px]'>Вход в кабинет участника</h1>
+				<div class='max-w-[600px] mt-[10px]'>Еще нет аккаунта?</div>
+				<a
+					href={PATHS.auth.register}
+					class='text-link mt-[5px] self-start'
+				>
+					Зарегистрироваться
+				</a>
+			</div>
+			<div>
+				<LoginForm client:load />
+			</div>
+		</div>
+	</section>
+</Layout>

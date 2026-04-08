@@ -1,0 +1,84 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"src": "^/_server-islands/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/_image/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/404/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/500/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/api/proxy(?:/(.*?))?/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/auth/confirmed/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/auth/login/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/auth/logout/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/auth/new-password/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/auth/register/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/auth/restore/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/dev/api-test/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/last/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/participant-form/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/requests/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/.*$",
+			"dest": "_render",
+			"status": 404
+		}
+	]
+}
