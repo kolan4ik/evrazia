@@ -2,15 +2,45 @@
 import BurgerMenu from './widgets/BurgerMenu.astro'
 import LineMenu from './components/LineMenu.astro'
 import SmallLogo from './components/SmallLogo.astro'
+import UserInfo from '@/components/cabinet/UserInfo.astro'
+import type { TopMenuLink } from './data/menuLinks'
+
+type Props = {
+	links?: TopMenuLink[]
+	userInfo?: {
+		name: string
+		avatarUrl?: string | null
+	} | null
+}
+
+const { links, userInfo = null } = Astro.props as Props
 ---
 
 <nav class='sticky-menu-nav h-[50px] flex justify-center'>
 	<div class='content-width flex flex-row items-center justify-between'>
 		<SmallLogo />
 		<div class='flex flex-row justify-end items-center gap-[80px]'>
-			<LineMenu type='sticky' />
+			<div class='hidden min-[1100px]:flex items-center'>
+				<LineMenu
+					type='sticky'
+					links={links}
+				/>
+			</div>
+			{
+				userInfo && (
+					<div class='hidden min-[900px]:flex items-center'>
+						<UserInfo
+							name={userInfo.name}
+							avatarUrl={userInfo.avatarUrl}
+						/>
+					</div>
+				)
+			}
 			<div class='flex justify-end items-center mt-[6px] min-[767px]:mt-0'>
-				<BurgerMenu type='sticky' />
+				<BurgerMenu
+					type='sticky'
+					links={links}
+				/>
 			</div>
 		</div>
 	</div>

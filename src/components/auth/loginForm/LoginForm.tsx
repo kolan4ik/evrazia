@@ -1,6 +1,7 @@
 import { PATHS } from '@/configs/paths'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { api, getApiErrorMessage } from '@/lib/api'
 
 type LoginFormValues = {
 	email: string
@@ -11,9 +12,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export function LoginForm() {
 	const [isLoading, setIsLoading] = useState(false)
-	const [isFault, setIsFault] = useState(false)
-	const [showPassword, setShowPassword] = useState(false)
-
+	const [submitError, setSubmitError] = useState('')
 
 	const {
 		register,
@@ -32,19 +31,26 @@ export function LoginForm() {
 
 	const onSubmit = handleSubmit(async (values) => {
 		if (isLoading) return
-
-		const formData = new FormData()
-		formData.set('email', values.email)
-		formData.set('password', values.password)
-
-		console.log('Login FormData', formData)
-		console.log('Login FormData entries', Object.fromEntries(formData.entries()))
-
-		setIsFault(false)
+		setSubmitError('')
 		setIsLoading(true)
-		await new Promise(resolve => setTimeout(resolve, 4000))
-		setIsLoading(false)
-		setIsFault(true)
+
+		try {
+			const result = await api.auth.login({
+				email: values.email.trim(),
+				password: values.password,
+			})
+
+			if (result.status === 'error') {
+				setSubmitError(getApiErrorMessage(result.payload, 'Неверный email или пароль'))
+				setIsLoading(false)
+				return
+			}
+
+			window.location.assign(PATHS.root)
+		} catch (error) {
+			setSubmitError(getApiErrorMessage(error, 'Неверный email или пароль'))
+			setIsLoading(false)
+		}
 	})
 
 	const submitDisabled = isLoading || !email.trim() || !password.trim()
@@ -72,10 +78,9 @@ export function LoginForm() {
 
 			<div className='relative flex flex-col'>
 				<input
-					type={showPassword ? 'text' : 'password'}
+					type='password'
 					placeholder='Пароль'
 					disabled={isLoading}
-					className='pr-10'
 					{...register('password', {
 						required: 'Неверный пароль',
 						minLength: {
@@ -84,26 +89,12 @@ export function LoginForm() {
 						},
 					})}
 				/>
-				<button
-					type='button'
-					className='absolute right-5 top-5 cursor-pointer opacity-80 hover:opacity-100 transition-opacity'
-					onClick={() => setShowPassword(prev => !prev)}
-					aria-label={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
-					disabled={isLoading}
-				>
-					<img
-						src={showPassword ? '/images/eye-show.svg' : '/images/eye-hide.svg'}
-						alt=''
-						width={18}
-						height={18}
-					/>
-				</button>
 				<div className={`error ${errors.password ? '' : 'hidden'}`}>{errors.password?.message ?? ''}</div>
 			</div>
 
 			<div className='relative w-fit'>
-				<div className={`absolute left-0 top-2 w-full text-center text-accent ${isFault ? '' : 'invisible'}`}>
-					Неверный email или пароль
+				<div className={`absolute left-0 top-[8px] w-full text-center text-accent ${submitError ? '' : 'invisible'}`}>
+					{submitError || 'Неверный email или пароль'}
 				</div>
 				<button
 					type='submit'
@@ -116,7 +107,7 @@ export function LoginForm() {
 
 			<a
 				href={PATHS.auth.restore}
-				className='text-link mt-4 self-start'
+				className='text-link mt-[16px] self-start'
 			>
 				Забыли пароль?
 			</a>

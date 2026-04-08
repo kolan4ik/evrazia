@@ -1,5 +1,5 @@
 // @ts-check
-import netlify from '@astrojs/netlify'
+import node from '@astrojs/node'
 import react from '@astrojs/react'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
@@ -14,14 +14,21 @@ const sharedConfig = {
 	},
 }
 
+const siteConfig = defineConfig({
+	...sharedConfig,
+	adapter: node({
+		mode: 'standalone',
+	}),
+	output: 'server',
+	trailingSlash: 'always',
+	build: {
+		format: 'directory',
+		inlineStylesheets: 'always',
+	},
+})
+
 const offlineConfig = defineConfig({
 	...sharedConfig,
-	// base: './',
-	// output: 'static',
-	// trailingSlash: 'never',
-	// build: {
-	// 	format: 'file',
-	// },
 	output: 'static',
 	base: './',
 	trailingSlash: 'never',
@@ -31,15 +38,10 @@ const offlineConfig = defineConfig({
 	},
 })
 
-const netlifyConfig = defineConfig({
-	...sharedConfig,
-	trailingSlash: 'always',
-	adapter: netlify(),
-})
+export default siteConfig
 
-// Для открытия dist/index.html напрямую из файловой системы.
-export default offlineConfig
-
-// Для деплоя на Netlify раскомментируй строку ниже
-// и закомментируй export default offlineConfig выше.
-// export default netlifyConfig
+// Для локального открытия dist/index.html из файловой системы
+// можно временно переключить экспорт на offlineConfig
+// или использовать отдельную офлайн-сборку.
+void node
+void offlineConfig

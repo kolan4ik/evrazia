@@ -1,10 +1,11 @@
 ---
-import { TOP_MENU_LINKS } from '../data/menuLinks'
+import { TOP_MENU_LINKS, type TopMenuLink } from '../data/menuLinks'
 
 type Props = {
 	type?: 'sticky' | 'lightBg'
+	links?: TopMenuLink[]
 }
-const { type } = Astro.props as Props
+const { type, links = TOP_MENU_LINKS } = Astro.props as Props
 
 const isSticky = type === 'sticky'
 const isLightBg = type === 'lightBg'
@@ -12,13 +13,11 @@ const isLightBg = type === 'lightBg'
 const darkText = isSticky || isLightBg
 ---
 
-
-
 <div
 	class=`hidden min-[1350px]:flex flex-row justify-end items-center gap-[50px] font-medium ${darkText ? "" : "text-white-text"}`
 >
 	{
-		TOP_MENU_LINKS.map((link) => (
+		links.map(link => (
 			<a
 				href={link.href}
 				class='text-[14px] leading-[14px] text-link'

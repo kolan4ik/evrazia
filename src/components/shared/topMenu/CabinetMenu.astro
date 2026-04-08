@@ -3,63 +3,69 @@ import BurgerMenuCabinet from './widgets/BurgerMenuCabinet.astro'
 import Logo from './components/Logo.astro'
 import LogoDark from './components/LogoDark.astro'
 import User from './components/User'
+import type { ProfileResponseData } from '@/lib/api'
+import { PATHS } from '@/configs/paths'
 
 type Props = {
-    type?: 'lightBg'
+	type?: 'lightBg'
+	profile: ProfileResponseData
 }
-const {type} = Astro.props as Props
+const { type, profile } = Astro.props as Props
 
 const currentPath = Astro.url.pathname
 
 const navCabinet = [
-    {
-        label: 'Мои заявки',
-        href: '/cabinet/orders',
-        count: ''
-    },
-    {
-        label: 'Мои задания',
-        href: '/cabinet/tasks',
-        count: ''
-    },
-    {
-        label: 'Уведомления',
-        href: '/cabinet/notifications',
-        count: '3'
-    },
+	{
+		label: 'Мои заявки',
+		href: PATHS.account.requests,
+		count: '',
+	},
+	{
+		label: 'Мои задания',
+		href: PATHS.account.tasks,
+		count: '',
+	},
+	{
+		label: 'Уведомления',
+		href: PATHS.account.notifications,
+		count: '3',
+	},
 ]
 ---
 
 <nav class='w-full min-h-[73px] z-40 relative flex flex-row items-start min-[767px]:items-center justify-between'>
-    {type !== 'lightBg' ?
-            <Logo/> :
-            <LogoDark/>}
-    <div class='flex flex-row justify-end items-center lg:gap-25.5 gap-7.5 pt-1 lg:pt-0'>
+	{type !== 'lightBg' ? <Logo /> : <LogoDark />}
+	<div class='flex flex-row justify-end items-center lg:gap-25.5 gap-7.5 pt-1 lg:pt-0'>
+		<div
+			class=`hidden lg:flex flex-row justify-end items-center gap-12.5 font-medium ${type !== 'lightBg' ? "text-white-text" : ""}`
+		>
+			{
+				navCabinet.map(link => (
+					<a
+						class:list={[
+							'text-sm gap-2 flex hover:no-underline! items-center hover:text-accent text-link',
+							{ 'text-accent underline!': currentPath === link.href },
+						]}
+						href={link.href}
+					>
+						<span>{link.label}</span>
+						{link.count !== '' && (
+							<span class='ml-1 text-xs text-white-text bg-accent rounded-full px-1.5 py-0.5'>{link.count}</span>
+						)}
+					</a>
+				))
+			}
+		</div>
 
-        <div class=`hidden lg:flex flex-row justify-end items-center gap-12.5 font-medium ${type !== 'lightBg' ? "text-white-text" : ""}`>
-            {
-                navCabinet.map((link) => (
-                        <a
-                                class:list={['text-sm gap-2 flex hover:no-underline! items-center hover:text-accent text-link', {"text-accent underline!": currentPath === link.href}]}
-                                href={link.href}
-                        >
-                            <span>{link.label}</span>
-                            {link.count !== "" &&
-                                    <span class="ml-1 text-xs text-white-text bg-accent rounded-full px-1.5 py-0.5">{link.count}</span>}
-                        </a>
-                ))
-            }
-        </div>
+		<div class='ml-auto relative'>
+			<User
+				client:load
+				profile={profile}
+			/>
+		</div>
 
-        <div class="ml-auto relative">
-            <User client:load />
-        </div>
-
-        <div class='flex justify-end items-center md:hidden'>
-            <BurgerMenuCabinet type={type}/>
-        </div>
-
-
-    </div>
+		<div class='flex justify-end items-center md:hidden'>
+			<BurgerMenuCabinet type={type} />
+		</div>
+	</div>
 </nav>
-

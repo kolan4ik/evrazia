@@ -133,20 +133,9 @@
   --color-dark-blue: #141C40;
   --color-white-text: #F3F3F3;
   --color-white-bg: #F3F3F3;
-  --color-text-base: #152551;
 
   --font-nyght-serif: "Nyght Serif", serif;
   --font-tt-firs: "TT Firs Neue Variable", sans-serif;
-}
-
-@layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
 }
 
 :root {
@@ -753,6 +742,10 @@ svg {
   margin-top: var(--form-field-gap);
 }
 
+.form .form-field + .form-field {
+  margin-top: var(--form-field-gap);
+}
+
 .form .group-header,
 .form .group-title {
   font-size: 22px;
@@ -824,6 +817,7 @@ svg {
 .form-control {
   width: 100%;
   margin-top: var(--form-control-padding-top);
+  margin-bottom: 0;
   padding: 0 var(--form-control-current-padding-x) var(--form-control-padding-bottom);
   background: transparent;
   border: none;
@@ -833,6 +827,11 @@ svg {
   line-height: var(--form-control-line-height);
   font-weight: 300;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form input.form-control:not([type='checkbox']),
+.form textarea.form-control {
+  margin-bottom: 0;
 }
 
 .form-control::placeholder {
@@ -913,7 +912,7 @@ textarea.form-control--textarea.form-control--boxed {
 
 /* textarea */
 .form textarea {
-  margin-top: 14px;
+  margin-top: 0;
   width: 100%;
   padding: 0 20px 8px;
   background: transparent;
@@ -947,6 +946,35 @@ textarea.form-control--textarea.form-control--boxed {
   border-radius: 12px;
   font-size: 16px;
   line-height: 22px;
+}
+
+.form .participant-textarea__control {
+  padding-right: 28px;
+}
+
+.form .participant-textarea__scrollbar {
+  pointer-events: none;
+  position: absolute;
+  top: 16px;
+  right: 1px;
+  bottom: 18px;
+  height: auto;
+  width: 4px;
+  background: #D9D9D9;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.form .participant-textarea-wrap[data-has-overflow='true'] .participant-textarea__scrollbar {
+  opacity: 1;
+}
+
+.form .participant-textarea__thumb {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 0;
+  background: var(--accent);
+  transition: transform 0.15s ease;
 }
 
 .form textarea.compact::placeholder {

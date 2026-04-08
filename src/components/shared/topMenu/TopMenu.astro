@@ -1,11 +1,17 @@
 ---
 import RegularMenu from './RegularMenu.astro'
 import StikyMenu from './StikyMenu.astro'
+import type { TopMenuLink } from './data/menuLinks'
 
 type Props = {
 	type?: 'lightBg'
+	links?: TopMenuLink[]
+	userInfo?: {
+		name: string
+		avatarUrl?: string | null
+	} | null
 }
-const { type } = Astro.props as Props
+const { type, links, userInfo = null } = Astro.props as Props
 ---
 
 <div
@@ -16,13 +22,20 @@ const { type } = Astro.props as Props
 		class='top-menu-switcher__sticky backdrop-blur-xl'
 		aria-hidden='true'
 	>
-		<StikyMenu />
+		<StikyMenu
+			links={links}
+			userInfo={userInfo}
+		/>
 	</div>
 	<div
 		class='top-menu-switcher__regular'
 		data-regular-menu
 	>
-		<RegularMenu type={type} />
+		<RegularMenu
+			type={type}
+			links={links}
+			userInfo={userInfo}
+		/>
 	</div>
 </div>
 
@@ -30,14 +43,9 @@ const { type } = Astro.props as Props
 	const topMenu = document.querySelector('[data-top-menu]')
 	const regularMenu = topMenu?.querySelector('[data-regular-menu]')
 	const threshold = 5
-	const isBurgerMenuOpen = () => document.body.classList.contains('burger-menu-body-lock')
 
 	if (topMenu && regularMenu) {
 		const syncMenus = () => {
-			if (isBurgerMenuOpen()) {
-				return
-			}
-
 			const { top } = regularMenu.getBoundingClientRect()
 			const shouldShowSticky = top <= -threshold
 
@@ -52,7 +60,6 @@ const { type } = Astro.props as Props
 		syncMenus()
 		window.addEventListener('scroll', syncMenus, { passive: true })
 		window.addEventListener('resize', syncMenus)
-		window.addEventListener('burger-menu:toggle', syncMenus)
 	}
 </script>
 

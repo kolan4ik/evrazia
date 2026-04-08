@@ -3,19 +3,44 @@ import BurgerMenu from './widgets/BurgerMenu.astro'
 import LineMenu from './components/LineMenu.astro'
 import Logo from './components/Logo.astro'
 import LogoDark from './components/LogoDark.astro'
+import UserInfo from '@/components/cabinet/UserInfo.astro'
+import type { TopMenuLink } from './data/menuLinks'
 
 type Props = {
 	type?: 'lightBg'
+	links?: TopMenuLink[]
+	userInfo?: {
+		name: string
+		avatarUrl?: string | null
+	} | null
 }
-const { type } = Astro.props as Props
+const { type, links, userInfo = null } = Astro.props as Props
 ---
 
 <nav class='w-full min-h-[73px] z-40 relative flex flex-row items-start min-[767px]:items-center justify-between'>
 	{type !== 'lightBg' ? <Logo /> : <LogoDark />}
 	<div class='flex flex-row justify-end items-stretch gap-[80px]'>
-		<LineMenu type={type} />
+		<div class='hidden min-[1100px]:flex items-center'>
+			<LineMenu
+				type={type}
+				links={links}
+			/>
+		</div>
+		{
+			userInfo && (
+				<div class='hidden min-[900px]:flex items-center'>
+					<UserInfo
+						name={userInfo.name}
+						avatarUrl={userInfo.avatarUrl}
+					/>
+				</div>
+			)
+		}
 		<div class='flex justify-end items-center mt-[10px] min-[767px]:mt-0'>
-			<BurgerMenu type={type} />
+			<BurgerMenu
+				type={type}
+				links={links}
+			/>
 		</div>
 	</div>
 </nav>

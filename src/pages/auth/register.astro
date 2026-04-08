@@ -3,6 +3,20 @@ import RegularMenu from '@/components/shared/topMenu/RegularMenu.astro'
 import Layout from '@/layouts/Layout.astro'
 import { RegisterForm } from '@/components/auth/registerForm/RegisterForm'
 import { PATHS } from '@/configs/paths'
+import { createServerApi } from '@/lib/api/server'
+
+export const prerender = false
+
+const serverApi = createServerApi({
+	origin: Astro.url.origin,
+	cookieHeader: Astro.request.headers.get('cookie') ?? '',
+})
+
+const profileResult = await serverApi.users.getProfile()
+
+if (profileResult.status === 'ok') {
+	return Astro.redirect(PATHS.root)
+}
 ---
 
 <Layout noindex={true}>

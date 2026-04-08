@@ -17,12 +17,13 @@ import styles from './UploadAvatar.module.css'
 type UploadAvatarProps = {
 	imgUri?: string
 	setImgUri: Dispatch<SetStateAction<string | undefined>>
+	onFileChange?: (file: File | null) => void
 }
 
 const FORMATS = ['jpg', 'jpeg', 'png']
 const MAX_FILE_MB = 5
 
-export function UploadAvatar({ imgUri, setImgUri }: UploadAvatarProps) {
+export function UploadAvatar({ imgUri, setImgUri, onFileChange }: UploadAvatarProps) {
 	const inputId = useId()
 	const inputRef = useRef<HTMLInputElement | null>(null)
 	const uploadTokenRef = useRef<symbol | null>(null)
@@ -105,6 +106,7 @@ export function UploadAvatar({ imgUri, setImgUri }: UploadAvatarProps) {
 		}
 
 		setLocalPreview(URL.createObjectURL(file))
+		onFileChange?.(file)
 		setStatus('idle')
 		clearInput()
 	}

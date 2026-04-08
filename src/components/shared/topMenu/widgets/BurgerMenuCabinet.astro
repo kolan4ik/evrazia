@@ -3,6 +3,7 @@ import Burger from '../assets/burger.svg'
 import BurgerLight from '../assets/burger-light.svg'
 import { TOP_MENU_LINKS } from '../data/menuLinks'
 import SocialIcons from '@/layouts/footer/components/SocialIcons.astro'
+import { PATHS } from '@/configs/paths'
 
 type Props = {
 	type?: 'sticky' | 'lightBg'
@@ -13,17 +14,17 @@ const { type } = Astro.props as Props
 const navCabinet = [
 	{
 		label: 'Мои заявки',
-		href: '/cabinet/orders',
+		href: PATHS.account.requests,
 		count: ''
 	},
 	{
 		label: 'Мои задания',
-		href: '/cabinet/tasks',
+		href: PATHS.account.tasks,
 		count: ''
 	},
 	{
 		label: 'Уведомления',
-		href: '/cabinet/notifications',
+		href: PATHS.account.notifications,
 		count: '3'
 	},
 ]

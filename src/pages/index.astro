@@ -1,14 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import CountdownTimer from '@/components/shared/CountdownTimer'
+import RegularMenu from '@/components/shared/topMenu/RegularMenu.astro'
+
 ---
 
-<Layout>
-	<section class='content min-h-[60vh] flex items-center justify-center text-center'>
-		<div class='inner-content'>
-			<h1>Пусто</h1>
-			<div class='mt-[12px] text-[20px] leading-[1.4] text-[#152551] max-[700px]:text-[16px]'>
-				На главной странице пока ничего нет.
-			</div>
-		</div>
+<Layout noindex={true}>
+	<section class='content flex flex-col'>
+        <RegularMenu type='lightBg' />
+		<CountdownTimer client:load />
 	</section>
 </Layout>

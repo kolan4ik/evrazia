@@ -1,6 +1,8 @@
 import { PATHS } from '@/configs/paths'
+import { FieldMessage, FieldMessages } from '@/components/shared/form/formPrimitives'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { api, getApiErrorMessage } from '@/lib/api'
 import { RegisterConfirmation } from './RegisterConfirmation'
 
 type RegisterFormValues = {
@@ -22,6 +24,7 @@ const PASSWORD_RULES_TEXT =
 export function RegisterForm() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [isSuccess, setIsSuccess] = useState(false)
+	const [submitError, setSubmitError] = useState('')
 	const [showPassword, setShowPassword] = useState(false)
 	const [showPasswordRepeat, setShowPasswordRepeat] = useState(false)
 
@@ -44,6 +47,16 @@ export function RegisterForm() {
 			passwordRepeat: '',
 			policyAccepted: false,
 			eventsAccepted: false,
+		},
+	})
+	const {
+		onChange: emailOnChange,
+		...emailFieldProps
+	} = register('email', {
+		required: 'Введите корректный email',
+		pattern: {
+			value: EMAIL_PATTERN,
+			message: 'Введите корректный email',
 		},
 	})
 
@@ -78,25 +91,33 @@ export function RegisterForm() {
 
 	const onSubmit = handleSubmit(async (values) => {
 		if (isLoading) return
-
-		const formData = new FormData()
-		formData.set('lastName', values.lastName)
-		formData.set('firstName', values.firstName)
-		formData.set('patronymic', values.patronymic)
-		formData.set('noPatronymic', String(values.noPatronymic))
-		formData.set('email', values.email)
-		formData.set('password', values.password)
-		formData.set('passwordRepeat', values.passwordRepeat)
-		formData.set('policyAccepted', String(values.policyAccepted))
-		formData.set('eventsAccepted', String(values.eventsAccepted))
-
-		console.log('Register FormData', formData)
-		console.log('Register FormData entries', Object.fromEntries(formData.entries()))
-
+		setSubmitError('')
 		setIsLoading(true)
-		await new Promise(resolve => setTimeout(resolve, 4000))
-		setIsLoading(false)
-		setIsSuccess(true)
+
+		try {
+			const result = await api.auth.register({
+				first_name: values.firstName.trim(),
+				last_name: values.lastName.trim(),
+				second_name_empty: values.noPatronymic,
+				second_name: values.noPatronymic ? null : values.patronymic.trim(),
+				email: values.email.trim(),
+				password: values.password,
+				password_confirm: values.passwordRepeat,
+				agree_processing_personal_data: true,
+				want_receive_information: values.eventsAccepted,
+			})
+
+			if (result.status === 'error') {
+				setSubmitError(getApiErrorMessage(result.payload, 'Не удалось зарегистрироваться'))
+				return
+			}
+
+			setIsSuccess(true)
+		} catch (error) {
+			setSubmitError(getApiErrorMessage(error, 'Не удалось зарегистрироваться'))
+		} finally {
+			setIsLoading(false)
+		}
 	})
 
 	const submitDisabled =
@@ -169,20 +190,21 @@ export function RegisterForm() {
 			</div>
 
 			{/* Email */}
-			<div className='relative flex flex-col'>
+			<div className='form-field'>
 				<input
+					className='form-control'
 					type='email'
 					placeholder='Электронная почта'
 					disabled={isLoading}
-					{...register('email', {
-						required: 'Укажите электронную почту',
-						pattern: {
-							value: EMAIL_PATTERN,
-							message: 'Введите корректный email',
-						},
-					})}
+					{...emailFieldProps}
+					onChange={async event => {
+						emailOnChange(event)
+						await trigger('email')
+					}}
 				/>
-				<p className={`error ${errors.email ? '' : 'hidden'}`}>{errors.email?.message ?? ''}</p>
+				<FieldMessages>
+					<FieldMessage variant='error'>{errors.email?.message}</FieldMessage>
+				</FieldMessages>
 			</div>
 
 			{/* Пароль 1 */}
@@ -254,6 +276,9 @@ export function RegisterForm() {
 			</div>
 
 			{/* Кнопка отправки */}
+			<div className={`mb-[12px] text-center text-accent ${submitError ? '' : 'hidden'}`}>
+				{submitError}
+			</div>
 			<button
 				type='submit'
 				className={`action-btn ${isLoading ? 'loading' : ''} ${submitDisabled && !isLoading ? 'disabled' : ''}`}

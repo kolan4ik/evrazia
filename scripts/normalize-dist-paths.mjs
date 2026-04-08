@@ -3,7 +3,7 @@ import path from 'node:path'
 
 const distDir = path.resolve(process.cwd(), 'dist')
 const rootAssetPattern = /(?:\/\.\/|\/|\.\/)(?:_astro|images|fonts)\/[^"'()\s,>]+/g
-const rootHrefPattern = /(?<=href=["'])\/[^"'#?]*(?:\/)?(?=["'])/g
+const rootHrefPattern = /href=(["'])(\/[^"'#?]*(?:\/)?)\1/g
 
 async function walk(dir) {
 	const entries = await fs.readdir(dir, { withFileTypes: true })
@@ -71,14 +71,15 @@ async function rewriteFile(filePath) {
 
 	if (ext === '.html') {
 		const routeMatches = [...next.matchAll(rootHrefPattern)]
-		for (const [match] of routeMatches) {
-			const targetRelative = resolveRoutePath(match)
+		for (const routeMatch of routeMatches) {
+			const [fullMatch, quote, routePath] = routeMatch
+			const targetRelative = resolveRoutePath(routePath)
 			const target = path.join(distDir, targetRelative)
 			// eslint-disable-next-line no-await-in-loop
 			if (!(await exists(target))) continue
 
 			const relative = ensureDotPrefix(toPosix(path.relative(currentDir, target)))
-			next = next.replace(match, relative)
+			next = next.replace(fullMatch, `href=${quote}${relative}${quote}`)
 		}
 	}
 

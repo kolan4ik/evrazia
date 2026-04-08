@@ -92,7 +92,7 @@ export default function CookieAlert() {
 				{ ['translate-y-0']: isVisible },
 				{ ['translate-y-full']: !isVisible },
 				'flex flex-row justify-between items-center gap-[40px]',
-				'max-[1200px]:flex-col max-[1200px]:relative max-[1200px]:gap-[10px] max-[1200px]:items-start max-[1200px]:text-[12px] max-[1200px]:leading-[18px]',
+				'max-[1200px]:flex-col max-[1200px]:gap-[10px] max-[1200px]:items-start max-[1200px]:text-[12px] max-[1200px]:leading-[18px]',
 				'max-[700px]:p-[20px] max-[700px]:text-[10px] max-[700px]:leading-[14px]',
 			)}
 		>

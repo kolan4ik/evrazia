@@ -13,9 +13,6 @@ export function NewPasswordForm() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [isSuccess, setIsSuccess] = useState(false)
 
-	const [showPassword, setShowPassword] = useState(false)
-	const [showPasswordRepeat, setShowPasswordRepeat] = useState(false)
-
 	const {
 		register,
 		handleSubmit,
@@ -76,7 +73,7 @@ export function NewPasswordForm() {
 		>
 			<div className='relative flex flex-col'>
 				<input
-					type={showPassword ? 'text' : 'password'}
+					type='password'
 					placeholder='Новый пароль'
 					disabled={isLoading}
 					{...register('password', {
@@ -91,20 +88,6 @@ export function NewPasswordForm() {
 						},
 					})}
 				/>
-				<button
-					type='button'
-					className='absolute right-[20px] top-[20px] cursor-pointer opacity-80 hover:opacity-100 transition-opacity'
-					onClick={() => setShowPassword(prev => !prev)}
-					aria-label={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
-					disabled={isLoading}
-				>
-					<img
-						src={showPassword ? '/images/eye-show.svg' : '/images/eye-hide.svg'}
-						alt=''
-						width={18}
-						height={18}
-					/>
-				</button>
 				<div className={`error ${errors.password ? '' : 'hidden'}`}>{errors.password?.message ?? ''}</div>
 			</div>
 
@@ -116,7 +99,7 @@ export function NewPasswordForm() {
 
 			<div className='relative flex flex-col'>
 				<input
-					type={showPasswordRepeat ? 'text' : 'password'}
+					type='password'
 					placeholder='Повторите пароль'
 					disabled={isLoading}
 					{...register('passwordRepeat', {
@@ -124,20 +107,6 @@ export function NewPasswordForm() {
 						validate: value => value === password || 'Пароли должны совпадать',
 					})}
 				/>
-				<button
-					type='button'
-					className='absolute right-[20px] top-[20px] cursor-pointer opacity-80 hover:opacity-100 transition-opacity'
-					onClick={() => setShowPasswordRepeat(prev => !prev)}
-					aria-label={showPasswordRepeat ? 'Скрыть пароль' : 'Показать пароль'}
-					disabled={isLoading}
-				>
-					<img
-						src={showPasswordRepeat ? '/images/eye-show.svg' : '/images/eye-hide.svg'}
-						alt=''
-						width={18}
-						height={18}
-					/>
-				</button>
 				<div className={`error ${errors.passwordRepeat ? '' : 'hidden'}`}>{errors.passwordRepeat?.message ?? ''}</div>
 			</div>
 

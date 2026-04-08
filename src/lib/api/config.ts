@@ -1,0 +1,5 @@
+export const API_BASE_URL = 'https://apistage.premiyaevrazia.su'
+export const API_PREFIX = '/api/v1'
+export const AUTH_TOKEN_KEY = 'premiya_auth_token'
+export const API_PROXY_PREFIX = '/api/proxy'
+export const UPSTREAM_SESSION_KEY = 'premiya_upstream_phpsessid'

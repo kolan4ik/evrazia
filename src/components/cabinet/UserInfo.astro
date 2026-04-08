@@ -1,0 +1,26 @@
+---
+type Props = {
+	name: string
+	avatarUrl?: string | null
+}
+
+const { name, avatarUrl = null } = Astro.props as Props
+---
+
+<div class='ml-auto flex items-center gap-[12px]'>
+	{
+		avatarUrl ? (
+			<img
+				src={avatarUrl}
+				alt={name}
+				class='h-[32px] w-[32px] rounded-full object-cover lg:h-[40px] lg:w-[40px]'
+				loading='lazy'
+			/>
+		) : (
+			<div class='h-[32px] w-[32px] rounded-full bg-black/8 lg:h-[40px] lg:w-[40px]' />
+		)
+	}
+	<span class='max-w-[160px] truncate text-[10px] leading-[14px] font-medium text-[#c5985e] underline decoration-transparent underline-offset-[4px] transition-colors lg:text-[16px] lg:leading-[20px]'>
+		{name}
+	</span>
+</div>

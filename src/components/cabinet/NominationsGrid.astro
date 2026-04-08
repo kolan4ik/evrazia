@@ -1,0 +1,52 @@
+---
+import type { NominationItem } from '@/lib/api'
+
+type Props = {
+	items: NominationItem[]
+}
+
+const { items } = Astro.props as Props
+---
+
+<section class='flex min-w-0 flex-col gap-[20px]'>
+	<h2 class='text-[30px] leading-[34px] text-[#152551]'>Номинации</h2>
+
+	{
+		items.length ? (
+			<div class='flex flex-col gap-[18px]'>
+				{items.map((item) => (
+					<article class='border-b border-black/10 pb-[18px] last:border-b-0 last:pb-0'>
+						<h3 class='text-[22px] leading-[28px] font-medium text-[#152551]'>
+							{item.name}
+						</h3>
+						{
+							item.text && (
+								<p class='mt-[8px] text-[16px] leading-[24px] text-[#152551]/80'>
+									{item.text}
+								</p>
+							)
+						}
+						{
+							item.label && (
+								<div class='mt-[6px] text-[14px] leading-[20px] text-[#152551]/60'>
+									{item.label}
+								</div>
+							)
+						}
+						{
+							item.picture && (
+								<div class='mt-[6px] text-[13px] leading-[18px] text-[#152551]/45'>
+									picture: {item.picture}
+								</div>
+							)
+						}
+					</article>
+				))}
+			</div>
+		) : (
+			<div class='text-[16px] leading-[24px] text-[#152551]/65'>
+				Список номинаций пока недоступен.
+			</div>
+		)
+	}
+</section>
