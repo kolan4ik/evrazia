@@ -14,9 +14,9 @@ const $$Logout = createComponent(async ($$result, $$props, $$slots) => {
   });
   await serverApi.auth.logout();
   return Astro2.redirect(PATHS.auth.register);
-}, "/Users/mac/Documents/Work/React/evra2/src/pages/auth/logout.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/pages/auth/logout.astro", void 0);
 
-const $$file = "/Users/mac/Documents/Work/React/evra2/src/pages/auth/logout.astro";
+const $$file = "/Users/mac/Documents/Work/React/evrazia/src/pages/auth/logout.astro";
 const $$url = "/auth/logout/";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

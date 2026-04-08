@@ -1,10 +1,10 @@
 import { c as createComponent } from './astro-component_J4ViFM41.mjs';
 import { T as renderTemplate, C as maybeRenderHead } from './sequence_BbkuQ6gj.mjs';
-import { r as renderComponent } from './server_jhl4VimB.mjs';
+import { r as renderComponent } from './server_Dg96Osvs.mjs';
 import { A as AUTH_TOKEN_KEY } from './config_B9oekYbR.mjs';
 import { P as PATHS } from './paths_CaINX1_I.mjs';
-import { $ as $$Layout } from './Layout_BHRDJuJp.mjs';
-import { g as getAuthorizedProfile, $ as $$CabinetMenu, C as CabinetLeft } from './getAuthorizedProfile_DB-kZrGN.mjs';
+import { $ as $$Layout } from './Layout_DzAWaumG.mjs';
+import { g as getAuthorizedProfile, $ as $$CabinetMenu, C as CabinetLeft } from './getAuthorizedProfile_DhOUSnsb.mjs';
 import { c as createServerApi } from './server_Ci6swuQU.mjs';
 
 const prerender = false;
@@ -69,9 +69,9 @@ const $$Requests = createComponent(async ($$result, $$props, $$slots) => {
 
 												${JSON.stringify(details, null, 2)}
 											</pre>` : null} </div>`) : renderTemplate`<div>Список заявок пуст</div>`} </div> </div> </div> </section> ` })}`;
-}, "/Users/mac/Documents/Work/React/evra2/src/pages/requests.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/pages/requests.astro", void 0);
 
-const $$file = "/Users/mac/Documents/Work/React/evra2/src/pages/requests.astro";
+const $$file = "/Users/mac/Documents/Work/React/evrazia/src/pages/requests.astro";
 const $$url = "/requests/";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

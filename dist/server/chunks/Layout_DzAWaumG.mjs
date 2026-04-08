@@ -1,6 +1,6 @@
 import { c as createComponent } from './astro-component_J4ViFM41.mjs';
 import { ay as generateCspDigest, b9 as unescapeHTML, T as renderTemplate, C as maybeRenderHead, a4 as addAttribute, bc as renderHead, bd as renderSlot } from './sequence_BbkuQ6gj.mjs';
-import { s as spreadAttributes, r as renderComponent } from './server_jhl4VimB.mjs';
+import { s as spreadAttributes, r as renderComponent } from './server_Dg96Osvs.mjs';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { jsxs, jsx } from 'react/jsx-runtime';
@@ -46,7 +46,7 @@ const $$SocialIcons = createComponent(($$result, $$props, $$slots) => {
     { icon: "/images/msg.svg", alt: "Messenger" }
   ];
   return renderTemplate`${maybeRenderHead()}<div class="social-icons" data-astro-cid-f2lyqwbc> ${socials.map((social) => renderTemplate`<img${addAttribute(social.icon, "src")}${addAttribute(social.alt, "alt")} class="social-icons__item" data-astro-cid-f2lyqwbc>`)} </div>`;
-}, "/Users/mac/Documents/Work/React/evra2/src/layouts/footer/components/SocialIcons.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/layouts/footer/components/SocialIcons.astro", void 0);
 
 function cn(...inputs) {
   return twMerge(clsx(inputs));
@@ -66,7 +66,7 @@ const $$Contacts = createComponent(($$result, $$props, $$slots) => {
   ), "class")}>
 Пн–Пт, 10:00–19:00 (МСК)
 </div> <div class="mt-[34px] min-[1150px]:mt-[68px]"> ${renderComponent($$result, "SocialIcons", $$SocialIcons, {})} </div> </div>`;
-}, "/Users/mac/Documents/Work/React/evra2/src/layouts/footer/Contacts.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/layouts/footer/Contacts.astro", void 0);
 
 const Icon1 = createSvgComponent({"meta":{"src":"/_astro/icon1.DWhW0pZd.svg","width":140,"height":71,"format":"svg"},"attributes":{"width":"140","height":"71","viewBox":"0 0 140 71","fill":"none"},"children":"\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M97.0405 17.4976L104.985 9.5332L112.929 17.4976L104.985 25.4418L97.0405 17.4976ZM122.482 27.0508L130.426 34.9951L122.482 42.9393L114.538 34.9951L122.482 27.0508ZM97.0405 52.4925L104.985 60.4368L112.929 52.4925L104.985 44.5483L97.0405 52.4925ZM87.4872 27.0508L79.543 34.9951L87.4872 42.9393L95.4315 34.9951L87.4872 27.0508Z\" fill=\"#EBEBEB\" />\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M136.019 13.5153L140.001 17.4975L130.448 27.0507L126.465 23.0685L122.483 27.0507L112.93 17.4975L116.912 13.5153L112.93 9.53311L122.483 0L126.465 3.98219L130.448 0L140.001 9.55322L136.019 13.5354V13.5153ZM95.4527 34.995L105.006 44.5482L114.559 34.995L105.006 25.4417L95.4527 34.995ZM93.0593 56.4746L97.0415 60.4568L87.4883 70.0101L83.5061 66.0279L79.5239 70.0101L69.9707 60.4568L73.9529 56.4746L69.9707 52.4925L79.5239 42.9392L83.5061 46.9214L87.4883 42.9392L97.0415 52.4925L93.0593 56.4746ZM93.0593 13.5153L97.0415 17.4975L87.4883 27.0507L83.5061 23.0685L79.5239 27.0507L69.9707 17.4975L73.9529 13.5153L69.9707 9.53311L79.544 0L83.5262 3.98219L87.4883 0L97.0415 9.55322L93.0593 13.5354V13.5153ZM136.019 56.4746L140.001 60.4568L130.448 70.0101L126.465 66.0279L122.483 70.0101L112.93 60.4568L116.912 56.4746L112.93 52.4925L122.483 42.9392L126.465 46.9214L130.448 42.9392L140.001 52.4925L136.019 56.4746Z\" fill=\"url(#paint0_linear_532_2794)\" />\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M9.55322 0H0V9.55323L18.8852 28.4384H28.4183V18.8852L9.55322 0Z\" fill=\"#EBEBEB\" />\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M60.4549 69.9902H70.0082V60.437L51.123 41.5518H41.5898V51.105L60.4751 69.9902H60.4549Z\" fill=\"#EBEBEB\" />\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0 60.4569V70.0101H9.55323L28.4384 51.1249V41.5918H18.8852L0 60.4569Z\" fill=\"#EBEBEB\" />\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M69.9912 9.55322V0H60.438L41.5527 18.8852V28.4183H51.106L69.9912 9.53311V9.55322Z\" fill=\"#EBEBEB\" />\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M27.0507 62.0457L35.0151 70.0101L42.9795 62.0457L35.0151 54.0813L27.0507 62.0457ZM62.0457 42.9593L69.9899 34.995L62.0457 27.0306L54.0813 34.995L62.0457 42.9593ZM7.96437 42.9593L15.9287 34.995L7.96437 27.0306L0 34.995L7.96437 42.9593ZM34.995 40.9481L40.928 35.0151L34.995 29.082L29.0619 35.0151L34.995 40.9481ZM27.0507 7.94426L35.0151 15.9086L42.9795 7.94426L35.0151 0L27.0507 7.94426Z\" fill=\"url(#paint1_linear_532_2794)\" />\n<path d=\"M29.0586 34.9931L22.4883 28.4229L15.918 34.9931L22.4883 41.5634L29.0586 34.9931Z\" fill=\"url(#paint2_linear_532_2794)\" />\n<path d=\"M54.0703 34.9863L47.5 28.416L40.9297 34.9863L47.5 41.5566L54.0703 34.9863Z\" fill=\"url(#paint3_linear_532_2794)\" />\n<path d=\"M34.9961 29.0517L41.5664 22.4814L34.9961 15.9112L28.4259 22.4814L34.9961 29.0517Z\" fill=\"url(#paint4_linear_532_2794)\" />\n<path d=\"M35.0039 54.0781L41.5742 47.5078L35.0039 40.9375L28.4337 47.5078L35.0039 54.0781Z\" fill=\"url(#paint5_linear_532_2794)\" />\n<defs>\n<linearGradient id=\"paint0_linear_532_2794\" x1=\"77.4926\" y1=\"7.48168\" x2=\"134.47\" y2=\"64.4792\" gradientUnits=\"userSpaceOnUse\">\n<stop stop-color=\"#EAC781\" />\n<stop offset=\"1\" stop-color=\"#A87242\" />\n</linearGradient>\n<linearGradient id=\"paint1_linear_532_2794\" x1=\"12.9723\" y1=\"12.9723\" x2=\"60.135\" y2=\"60.135\" gradientUnits=\"userSpaceOnUse\">\n<stop stop-color=\"#EAC781\" />\n<stop offset=\"1\" stop-color=\"#A87242\" />\n</linearGradient>\n<linearGradient id=\"paint2_linear_532_2794\" x1=\"6.72172\" y1=\"19.2215\" x2=\"53.8845\" y2=\"66.4043\" gradientUnits=\"userSpaceOnUse\">\n<stop stop-color=\"#EAC781\" />\n<stop offset=\"1\" stop-color=\"#A87242\" />\n</linearGradient>\n<linearGradient id=\"paint3_linear_532_2794\" x1=\"19.2277\" y1=\"6.71914\" x2=\"66.4106\" y2=\"53.8819\" gradientUnits=\"userSpaceOnUse\">\n<stop stop-color=\"#EAC781\" />\n<stop offset=\"1\" stop-color=\"#A87242\" />\n</linearGradient>\n<linearGradient id=\"paint4_linear_532_2794\" x1=\"19.2245\" y1=\"6.71489\" x2=\"66.4073\" y2=\"53.8776\" gradientUnits=\"userSpaceOnUse\">\n<stop stop-color=\"#EAC781\" />\n<stop offset=\"1\" stop-color=\"#A87242\" />\n</linearGradient>\n<linearGradient id=\"paint5_linear_532_2794\" x1=\"6.72258\" y1=\"19.2213\" x2=\"53.8854\" y2=\"66.4042\" gradientUnits=\"userSpaceOnUse\">\n<stop stop-color=\"#EAC781\" />\n<stop offset=\"1\" stop-color=\"#A87242\" />\n</linearGradient>\n</defs>\n","styles":[]});
 
@@ -78,7 +78,7 @@ const $$Icons = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<div class="flex flex-col justify-between" data-astro-cid-5m2jnbgj> <div class="flex flex-col justify-start" data-astro-cid-5m2jnbgj> <div class="flex flex-col gap-[10px]" data-astro-cid-5m2jnbgj> <img${addAttribute(Icon1.src, "src")} class="icon" data-astro-cid-5m2jnbgj> <img${addAttribute(Icon2.src, "src")} class="icon" data-astro-cid-5m2jnbgj> <img${addAttribute(Icon3.src, "src")} class="icon" data-astro-cid-5m2jnbgj> </div> </div> <div class="text-[#9598A7] text-[10px] font-tt-firs footer-padding hidden max-[700px]:block whitespace-nowrap" data-astro-cid-5m2jnbgj>
 АНО «Евразия» ©
 </div> </div>`;
-}, "/Users/mac/Documents/Work/React/evra2/src/layouts/footer/Icons.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/layouts/footer/Icons.astro", void 0);
 
 const $$InfoColumn = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<div class="flex flex-col-reverse min-[1150px]:flex-col justify-between"> <div${addAttribute(cn(
@@ -86,7 +86,7 @@ const $$InfoColumn = createComponent(($$result, $$props, $$slots) => {
     "text-white-text text-[10px]",
     "min-[1150px]:text-[14px]"
   ), "class")}> <div class="flex flex-col gap-0"> <div>Орг. комитет:</div> <a href="mailto:org@premiyaevrazia.su"${addAttribute(cn("text-link-reverse text-[16px]", "max-[1150px]:text-[18px]", "max-[700px]:text-[14px]"), "class")}>org@premiyaevrazia.su</a> </div> <div class="flex flex-col gap-0"> <div>Тех. поддержка:</div> <a href="mailto:support@premiyaevrazia.su"${addAttribute(cn("text-link-reverse text-[16px]", "max-[1150px]:text-[18px]", "max-[700px]:text-[14px]"), "class")}>support@premiyaevrazia.su</a> </div> </div> </div>`;
-}, "/Users/mac/Documents/Work/React/evra2/src/layouts/footer/InfoColumn.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/layouts/footer/InfoColumn.astro", void 0);
 
 const $$MenuLinks = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<div class="flex flex-row flex-wrap justify-start min-[767px]:justify-center min-[1150px]:flex-col min-[1150px]:justify-start gap-x-[36px] min-[1150px]:gap-x-[50px] gap-y-[20px] text-white-text text-[14px]"> <a href="/#nominations" class="text-link">Номинации</a> <a href="/#steps" class="text-link">Этапы</a> <!-- <a
@@ -103,11 +103,11 @@ const $$MenuLinks = createComponent(($$result, $$props, $$slots) => {
 		class='text-link'
 		>Для СМИ</a
 	> --> </div>`;
-}, "/Users/mac/Documents/Work/React/evra2/src/layouts/footer/MenuLinks.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/layouts/footer/MenuLinks.astro", void 0);
 
 const $$Footer = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<footer class="mt-[100px]! bg-dark-blue text-white-text pt-[40px]! min-[1150px]:pt-[100px]! pb-[50px]!" data-astro-cid-yfkywswv> <div class="flex flex-col w-full content footer-padding" data-astro-cid-yfkywswv> <section class="block min-[1150px]:hidden mb-[30px] min-[767px]:mb-[40px]" data-astro-cid-yfkywswv> ${renderComponent($$result, "MenuLinks", $$MenuLinks, { "data-astro-cid-yfkywswv": true })} </section> <section class="block min-[767px]:hidden mb-[40px]" data-astro-cid-yfkywswv> ${renderComponent($$result, "Contacts", $$Contacts, { "data-astro-cid-yfkywswv": true })} </section> </div> <div class="flex flex-row gap-[60px] justify-start min-[767px]:gap-0 min-[767px]:justify-between footer-padding" data-astro-cid-yfkywswv> <!-- Первая колонка --> ${renderComponent($$result, "Icons", $$Icons, { "data-astro-cid-yfkywswv": true })} <!-- Контакты --> <section class="hidden min-[767px]:block" data-astro-cid-yfkywswv> ${renderComponent($$result, "Contacts", $$Contacts, { "data-astro-cid-yfkywswv": true })} </section> <!-- Меню --> <section class="hidden min-[1150px]:block" data-astro-cid-yfkywswv> ${renderComponent($$result, "MenuLinks", $$MenuLinks, { "data-astro-cid-yfkywswv": true })} </section> <!-- Последняя колонка --> ${renderComponent($$result, "InfoColumn", $$InfoColumn, { "data-astro-cid-yfkywswv": true })} </div> <div class="text-[#9598A7] text-[12px] footer-padding max-[700px]:hidden" data-astro-cid-yfkywswv>АНО «Евразия» ©</div> </footer>`;
-}, "/Users/mac/Documents/Work/React/evra2/src/layouts/footer/Footer.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/layouts/footer/Footer.astro", void 0);
 
 const COOKIE_NAME = "eurasia_cookie";
 const COOKIE_VALUE = "accepted";
@@ -273,6 +273,6 @@ const $$Layout = createComponent(($$result, $$props, $$slots) => {
   Astro2.self = $$Layout;
   const { noindex } = Astro2.props;
   return renderTemplate`<html lang="ru"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width">${noindex && renderTemplate`<meta name="robots" content="noindex, nofollow">`}<meta name="generator"${addAttribute(Astro2.generator, "content")}><link rel="preload" href="/fonts/TT%20Firs%20Neue%20Trial%20Var%20Roman.ttf" as="font" type="font/ttf" crossorigin="anonymous"><link rel="preload" href="/fonts/NyghtSerif-Light.woff2" as="font" type="font/woff2" crossorigin="anonymous"><title>ЕВРАЗИЯ - Международная премия 2026</title>${renderHead()}</head> <body> ${renderSlot($$result, $$slots["default"])} ${renderComponent($$result, "Footer", $$Footer, {})} ${renderComponent($$result, "CookieAlert", CookieAlert, { "client:load": true, "client:component-hydration": "load", "client:component-path": "@/components/shared/cookie/CookieAlert", "client:component-export": "default" })} </body></html>`;
-}, "/Users/mac/Documents/Work/React/evra2/src/layouts/Layout.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/layouts/Layout.astro", void 0);
 
 export { $$Layout as $, $$SocialIcons as a, createSvgComponent as b, cn as c };

@@ -1,18 +1,18 @@
 import { c as createComponent } from './astro-component_J4ViFM41.mjs';
 import { T as renderTemplate, C as maybeRenderHead } from './sequence_BbkuQ6gj.mjs';
-import { r as renderComponent } from './server_jhl4VimB.mjs';
-import { $ as $$RegularMenu } from './RegularMenu_C-KzrL6c.mjs';
+import { r as renderComponent } from './server_Dg96Osvs.mjs';
+import { $ as $$RegularMenu } from './RegularMenu_DMoBXt3a.mjs';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import * as React from 'react';
 import { useState, useMemo, useEffect, useId, useRef, memo } from 'react';
 import { getDefaultClassNames, DayPicker } from 'react-day-picker';
-import { c as cn, $ as $$Layout } from './Layout_BHRDJuJp.mjs';
+import { c as cn, $ as $$Layout } from './Layout_DzAWaumG.mjs';
 import { cva } from 'class-variance-authority';
 import { Slot, Popover as Popover$1, Select as Select$1 } from 'radix-ui';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon, CalendarDaysIcon, CheckIcon, ChevronUpIcon } from 'lucide-react';
 import { format, getYear, parse, isValid, setMonth, setYear } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { F as FieldMessages, a as FieldMessage } from './formPrimitives_DezXMny1.mjs';
+import { F as FieldMessages, a as FieldMessage } from './formPrimitives_BqpTrmDh.mjs';
 import { a as api } from './index_BGfC7bBd.mjs';
 import { a as API_BASE_URL } from './config_B9oekYbR.mjs';
 import { useForm, useWatch, Controller } from 'react-hook-form';
@@ -3123,9 +3123,9 @@ const $$ParticipantForm = createComponent(async ($$result, $$props, $$slots) => 
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "noindex": true }, { "default": async ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="content flex flex-col"> ${renderComponent($$result2, "RegularMenu", $$RegularMenu, { "type": "lightBg" })} <div class="inner-content grid grid-cols-1 items-start justify-start gap-x-[70px] gap-y-[60px] min-[1000px]:grid-cols-2"> <div class="participant-form-page-intro flex flex-col justify-start"> <h1>Форма подачи заявки</h1> <div class="mt-[10px] max-w-[430px]">Пожалуйста полностью заполните профиль участника и данные заявки.</div> <div class="mt-[10px] max-w-[430px]">Указывайте только действительную информацию!</div> <div class="mt-[10px] max-w-[430px] text-[16px] leading-[24px] text-[#152551]/80">
 Номинация: name
 </div> </div> <div class="w-full min-w-0"> ${renderComponent($$result2, "ParticipantFormComponent", ParticipantForm, { "client:load": true, "initialNominationId": nominationId, "initialStatus": initialStatus, "client:component-hydration": "load", "client:component-path": "@/components/participantForm/ParticipantForm", "client:component-export": "ParticipantForm" })} </div> </div> </section> ` })}`;
-}, "/Users/mac/Documents/Work/React/evra2/src/pages/participant-form.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/pages/participant-form.astro", void 0);
 
-const $$file = "/Users/mac/Documents/Work/React/evra2/src/pages/participant-form.astro";
+const $$file = "/Users/mac/Documents/Work/React/evrazia/src/pages/participant-form.astro";
 const $$url = "/participant-form/";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

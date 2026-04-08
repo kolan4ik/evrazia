@@ -1,5 +1,5 @@
 import { A as AstroError, aW as NoImageMetadata, aX as FailedToFetchRemoteImageDimensions, aY as RemoteImageNotAllowed, aI as joinPaths, aZ as ExpectedImage, a_ as isRemotePath, a$ as LocalImageUsedWrongly, b0 as MissingImageDimension, b1 as UnsupportedImageFormat, b2 as IncompatibleDescriptorOptions, b3 as UnsupportedImageConversion, b4 as InvalidImageService, b5 as ExpectedImageOptions, b6 as ExpectedNotESMImage, b7 as ImageMissingAlt, C as maybeRenderHead, a4 as addAttribute, T as renderTemplate, b8 as FontFamilyNotFound, b9 as unescapeHTML, ba as removeQueryString, bb as isParentDirectory } from './sequence_BbkuQ6gj.mjs';
-import { i as isRemoteAllowed, s as spreadAttributes } from './server_jhl4VimB.mjs';
+import { i as isRemoteAllowed, s as spreadAttributes } from './server_Dg96Osvs.mjs';
 import { c as createComponent } from './astro-component_J4ViFM41.mjs';
 import 'clsx';
 import { readFile } from 'node:fs/promises';
@@ -1459,7 +1459,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './sharp_Bjw5OlSP.mjs'
+      './sharp_DAPuYuIj.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -1658,7 +1658,7 @@ const $$Image = createComponent(async ($$result, $$props, $$slots) => {
   }
   const { class: className, ...attributes } = { ...additionalAttributes, ...image.attributes };
   return renderTemplate`${maybeRenderHead()}<img${addAttribute(image.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}>`;
-}, "/Users/mac/Documents/Work/React/evra2/node_modules/.pnpm/astro@6.1.4_@netlify+blobs@10.7.4_@types+node@25.5.2_jiti@2.6.1_lightningcss@1.32.0_rol_32114640f192fd7be6e39d14c192741c/node_modules/astro/components/Image.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/node_modules/.pnpm/astro@6.1.4_@netlify+blobs@10.7.4_@types+node@25.5.2_jiti@2.6.1_lightningcss@1.32.0_rol_32114640f192fd7be6e39d14c192741c/node_modules/astro/components/Image.astro", void 0);
 
 const mimes = {
   "3g2": "video/3gpp2",
@@ -2182,7 +2182,7 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
     const srcsetAttribute = props.densities || !props.densities && !props.widths && !useResponsive ? `${image.src}${image.srcSet.values.length > 0 ? ", " + image.srcSet.attribute : ""}` : image.srcSet.attribute;
     return renderTemplate`<source${addAttribute(srcsetAttribute, "srcset")}${addAttribute(lookup(image.options.format ?? image.src) ?? `image/${image.options.format}`, "type")}${spreadAttributes(sourceAdditionalAttributes)}>`;
   })}  <img${addAttribute(fallbackImage.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}> </picture>`;
-}, "/Users/mac/Documents/Work/React/evra2/node_modules/.pnpm/astro@6.1.4_@netlify+blobs@10.7.4_@types+node@25.5.2_jiti@2.6.1_lightningcss@1.32.0_rol_32114640f192fd7be6e39d14c192741c/node_modules/astro/components/Picture.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/node_modules/.pnpm/astro@6.1.4_@netlify+blobs@10.7.4_@types+node@25.5.2_jiti@2.6.1_lightningcss@1.32.0_rol_32114640f192fd7be6e39d14c192741c/node_modules/astro/components/Picture.astro", void 0);
 
 const componentDataByCssVariable = new Map([]);
 
@@ -2234,7 +2234,7 @@ const $$Font = createComponent(($$result, $$props, $$slots) => {
   }
   const filteredPreloadData = filterPreloads(data.preloads, preload);
   return renderTemplate`<style>${unescapeHTML(data.css)}</style>${filteredPreloadData?.map(({ url, type }) => renderTemplate`<link rel="preload"${addAttribute(url, "href")} as="font"${addAttribute(`font/${type}`, "type")} crossorigin>`)}`;
-}, "/Users/mac/Documents/Work/React/evra2/node_modules/.pnpm/astro@6.1.4_@netlify+blobs@10.7.4_@types+node@25.5.2_jiti@2.6.1_lightningcss@1.32.0_rol_32114640f192fd7be6e39d14c192741c/node_modules/astro/components/Font.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/node_modules/.pnpm/astro@6.1.4_@netlify+blobs@10.7.4_@types+node@25.5.2_jiti@2.6.1_lightningcss@1.32.0_rol_32114640f192fd7be6e39d14c192741c/node_modules/astro/components/Font.astro", void 0);
 
 const assetQueryParams = undefined;
 					const imageConfig = {"endpoint":{"route":"/_image/","entrypoint":"astro/assets/endpoint/node"},"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":[],"remotePatterns":[],"responsiveStyles":false};
@@ -2249,8 +2249,8 @@ const assetQueryParams = undefined;
 					// in the Lambda bundle, which would bloat the bundle with images.
 					// To prevent this, we mark the URL construction as pure,
 					// so that it's tree-shaken away for all platforms that don't need it.
-					const outDir = /* #__PURE__ */ new URL("file:///Users/mac/Documents/Work/React/evra2/dist/client/");
-					const serverDir = /* #__PURE__ */ new URL("file:///Users/mac/Documents/Work/React/evra2/dist/server/");
+					const outDir = /* #__PURE__ */ new URL("file:///Users/mac/Documents/Work/React/evrazia/dist/client/");
+					const serverDir = /* #__PURE__ */ new URL("file:///Users/mac/Documents/Work/React/evrazia/dist/server/");
 							const getImage = async (options) => await getImage$1(options, imageConfig);
 
 const fnv1a52 = (str) => {

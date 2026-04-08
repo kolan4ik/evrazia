@@ -1,8 +1,8 @@
 import { c as createComponent } from './astro-component_J4ViFM41.mjs';
 import { T as renderTemplate, a4 as addAttribute, C as maybeRenderHead } from './sequence_BbkuQ6gj.mjs';
-import { r as renderComponent } from './server_jhl4VimB.mjs';
-import { B as BurgerLight, a as Burger, $ as $$Logo, b as $$LogoDark } from './LogoDark_C8-6ODk0.mjs';
-import { a as $$SocialIcons } from './Layout_BHRDJuJp.mjs';
+import { r as renderComponent } from './server_Dg96Osvs.mjs';
+import { B as BurgerLight, a as Burger, $ as $$Logo, b as $$LogoDark } from './LogoDark_Dffe1i0B.mjs';
+import { a as $$SocialIcons } from './Layout_DzAWaumG.mjs';
 import { P as PATHS } from './paths_CaINX1_I.mjs';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState, useRef, useEffect } from 'react';
@@ -108,7 +108,7 @@ support@premiyaevrazia.su
 		})
 	})()
 <\/script>`])), maybeRenderHead(), addAttribute(`burger-menu ${isSticky ? "sticky" : ""} ${isLightBg ? "dark-mode" : ""}`, "class"), addAttribute(`--burger-icon: url('${isLightBg ? BurgerLight.src : Burger.src}')`, "style"), addAttribute(panelId, "aria-controls"), addAttribute(panelId, "id"), navCabinet.map((link) => renderTemplate`<a${addAttribute(link.href, "href")} class="burger-menu__link flex gap-2" data-burger-link data-astro-cid-azr2i5je> ${link.label} ${link.count !== "" && renderTemplate`<span class="ml-1 text-xl text-white-text w-6 h-6 text-center flex items-center justify-center bg-accent rounded-full" data-astro-cid-azr2i5je> ${link.count} </span>`} </a>`), renderComponent($$result, "SocialIcons", $$SocialIcons, { "data-astro-cid-azr2i5je": true }));
-}, "/Users/mac/Documents/Work/React/evra2/src/components/shared/topMenu/widgets/BurgerMenuCabinet.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/components/shared/topMenu/widgets/BurgerMenuCabinet.astro", void 0);
 
 const events$1 = [
   { href: "#", text: "Редактировать профиль" },
@@ -233,8 +233,8 @@ const $$CabinetMenu = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<nav class="w-full min-h-[73px] z-40 relative flex flex-row items-start min-[767px]:items-center justify-between"> ${type !== "lightBg" ? renderTemplate`${renderComponent($$result, "Logo", $$Logo, {})}` : renderTemplate`${renderComponent($$result, "LogoDark", $$LogoDark, {})}`} <div class="flex flex-row justify-end items-center lg:gap-25.5 gap-7.5 pt-1 lg:pt-0"> <div${addAttribute(`hidden lg:flex flex-row justify-end items-center gap-12.5 font-medium ${type !== "lightBg" ? "text-white-text" : ""}`, "class")}> ${navCabinet.map((link) => renderTemplate`<a${addAttribute([
     "text-sm gap-2 flex hover:no-underline! items-center hover:text-accent text-link",
     { "text-accent underline!": currentPath === link.href }
-  ], "class:list")}${addAttribute(link.href, "href")}> <span>${link.label}</span> ${link.count !== "" && renderTemplate`<span class="ml-1 text-xs text-white-text bg-accent rounded-full px-1.5 py-0.5">${link.count}</span>`} </a>`)} </div> <div class="ml-auto relative"> ${renderComponent($$result, "User", User, { "client:load": true, "profile": profile, "client:component-hydration": "load", "client:component-path": "/Users/mac/Documents/Work/React/evra2/src/components/shared/topMenu/components/User", "client:component-export": "default" })} </div> <div class="flex justify-end items-center md:hidden"> ${renderComponent($$result, "BurgerMenuCabinet", $$BurgerMenuCabinet, { "type": type })} </div> </div> </nav>`;
-}, "/Users/mac/Documents/Work/React/evra2/src/components/shared/topMenu/CabinetMenu.astro", void 0);
+  ], "class:list")}${addAttribute(link.href, "href")}> <span>${link.label}</span> ${link.count !== "" && renderTemplate`<span class="ml-1 text-xs text-white-text bg-accent rounded-full px-1.5 py-0.5">${link.count}</span>`} </a>`)} </div> <div class="ml-auto relative"> ${renderComponent($$result, "User", User, { "client:load": true, "profile": profile, "client:component-hydration": "load", "client:component-path": "/Users/mac/Documents/Work/React/evrazia/src/components/shared/topMenu/components/User", "client:component-export": "default" })} </div> <div class="flex justify-end items-center md:hidden"> ${renderComponent($$result, "BurgerMenuCabinet", $$BurgerMenuCabinet, { "type": type })} </div> </div> </nav>`;
+}, "/Users/mac/Documents/Work/React/evrazia/src/components/shared/topMenu/CabinetMenu.astro", void 0);
 
 const events = [
   {

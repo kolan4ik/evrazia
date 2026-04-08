@@ -1,8 +1,8 @@
 import { c as createComponent } from './astro-component_J4ViFM41.mjs';
 import { T as renderTemplate, C as maybeRenderHead } from './sequence_BbkuQ6gj.mjs';
-import { r as renderComponent } from './server_jhl4VimB.mjs';
-import { $ as $$RegularMenu } from './RegularMenu_C-KzrL6c.mjs';
-import { $ as $$Layout } from './Layout_BHRDJuJp.mjs';
+import { r as renderComponent } from './server_Dg96Osvs.mjs';
+import { $ as $$RegularMenu } from './RegularMenu_DMoBXt3a.mjs';
+import { $ as $$Layout } from './Layout_DzAWaumG.mjs';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -148,9 +148,9 @@ const $$NewPassword = createComponent(async ($$result, $$props, $$slots) => {
     return Astro2.redirect(PATHS.root);
   }
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "noindex": true }, { "default": async ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="content flex flex-col"> ${renderComponent($$result2, "RegularMenu", $$RegularMenu, { "type": "lightBg" })} <div class="inner-content grid grid-cols-1 min-[1000px]:grid-cols-2 items-start justify-start gap-y-[60px]"> <div class="flex flex-col justify-start"> <h1>Создание<br>нового пароля</h1> <div class="max-w-[600px] mt-[10px]">Создайте новый пароль для входа в кабинет</div> </div> <div> ${renderComponent($$result2, "NewPasswordForm", NewPasswordForm, { "client:load": true, "client:component-hydration": "load", "client:component-path": "@/components/auth/newPasswordForm/NewPasswordForm", "client:component-export": "NewPasswordForm" })} </div> </div> </section> ` })}`;
-}, "/Users/mac/Documents/Work/React/evra2/src/pages/auth/new-password.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/pages/auth/new-password.astro", void 0);
 
-const $$file = "/Users/mac/Documents/Work/React/evra2/src/pages/auth/new-password.astro";
+const $$file = "/Users/mac/Documents/Work/React/evrazia/src/pages/auth/new-password.astro";
 const $$url = "/auth/new-password/";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

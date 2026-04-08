@@ -1,7 +1,7 @@
 import { c as createComponent } from './astro-component_J4ViFM41.mjs';
 import { T as renderTemplate, C as maybeRenderHead } from './sequence_BbkuQ6gj.mjs';
-import { r as renderComponent } from './server_jhl4VimB.mjs';
-import { $ as $$Layout } from './Layout_BHRDJuJp.mjs';
+import { r as renderComponent } from './server_Dg96Osvs.mjs';
+import { $ as $$Layout } from './Layout_DzAWaumG.mjs';
 
 var __freeze = Object.freeze;
 var __defProp = Object.defineProperty;
@@ -447,9 +447,9 @@ const $$ApiTest = createComponent(async ($$result, $$props, $$slots) => {
 
 		refreshToken()
 	<\/script> `])), maybeRenderHead()) })}`;
-}, "/Users/mac/Documents/Work/React/evra2/src/pages/dev/api-test.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/pages/dev/api-test.astro", void 0);
 
-const $$file = "/Users/mac/Documents/Work/React/evra2/src/pages/dev/api-test.astro";
+const $$file = "/Users/mac/Documents/Work/React/evrazia/src/pages/dev/api-test.astro";
 const $$url = "/dev/api-test/";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

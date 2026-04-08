@@ -1,9 +1,9 @@
 import { c as createComponent } from './astro-component_J4ViFM41.mjs';
 import { T as renderTemplate, a4 as addAttribute, C as maybeRenderHead } from './sequence_BbkuQ6gj.mjs';
-import { r as renderComponent } from './server_jhl4VimB.mjs';
-import { B as BurgerLight, a as Burger, $ as $$Logo, b as $$LogoDark } from './LogoDark_C8-6ODk0.mjs';
+import { r as renderComponent } from './server_Dg96Osvs.mjs';
+import { B as BurgerLight, a as Burger, $ as $$Logo, b as $$LogoDark } from './LogoDark_Dffe1i0B.mjs';
 import { P as PATHS } from './paths_CaINX1_I.mjs';
-import { a as $$SocialIcons } from './Layout_BHRDJuJp.mjs';
+import { a as $$SocialIcons } from './Layout_DzAWaumG.mjs';
 import 'clsx';
 
 const TOP_MENU_LINKS = [
@@ -95,7 +95,7 @@ support@premiyaevrazia.su
 		})
 	})()
 <\/script>`])), maybeRenderHead(), addAttribute(`burger-menu ${isSticky ? "sticky" : ""} ${isLightBg ? "dark-mode" : ""}`, "class"), addAttribute(`--burger-icon: url('${isLightBg ? BurgerLight.src : Burger.src}')`, "style"), addAttribute(panelId, "aria-controls"), addAttribute(panelId, "id"), TOP_MENU_LINKS.map((link) => renderTemplate`<a${addAttribute(link.href, "href")} class="burger-menu__link" data-burger-link data-astro-cid-zhximn7x> ${link.label} </a>`), renderComponent($$result, "SocialIcons", $$SocialIcons, { "data-astro-cid-zhximn7x": true }));
-}, "/Users/mac/Documents/Work/React/evra2/src/components/shared/topMenu/widgets/BurgerMenu.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/components/shared/topMenu/widgets/BurgerMenu.astro", void 0);
 
 const $$LineMenu = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
@@ -105,20 +105,20 @@ const $$LineMenu = createComponent(($$result, $$props, $$slots) => {
   const isLightBg = type === "lightBg";
   const darkText = isSticky || isLightBg;
   return renderTemplate`${maybeRenderHead()}<div${addAttribute(`hidden min-[1350px]:flex flex-row justify-end items-center gap-[50px] font-medium ${darkText ? "" : "text-white-text"}`, "class")}> ${links.map((link) => renderTemplate`<a${addAttribute(link.href, "href")} class="text-[14px] leading-[14px] text-link"> ${link.label} </a>`)} </div>`;
-}, "/Users/mac/Documents/Work/React/evra2/src/components/shared/topMenu/components/LineMenu.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/components/shared/topMenu/components/LineMenu.astro", void 0);
 
 const $$UserInfo = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
   Astro2.self = $$UserInfo;
   const { name, avatarUrl = null } = Astro2.props;
   return renderTemplate`${maybeRenderHead()}<div class="ml-auto flex items-center gap-[12px]"> ${avatarUrl ? renderTemplate`<img${addAttribute(avatarUrl, "src")}${addAttribute(name, "alt")} class="h-[32px] w-[32px] rounded-full object-cover lg:h-[40px] lg:w-[40px]" loading="lazy">` : renderTemplate`<div class="h-[32px] w-[32px] rounded-full bg-black/8 lg:h-[40px] lg:w-[40px]"></div>`} <span class="max-w-[160px] truncate text-[10px] leading-[14px] font-medium text-[#c5985e] underline decoration-transparent underline-offset-[4px] transition-colors lg:text-[16px] lg:leading-[20px]"> ${name} </span> </div>`;
-}, "/Users/mac/Documents/Work/React/evra2/src/components/cabinet/UserInfo.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/components/cabinet/UserInfo.astro", void 0);
 
 const $$RegularMenu = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
   Astro2.self = $$RegularMenu;
   const { type, links, userInfo = null } = Astro2.props;
   return renderTemplate`${maybeRenderHead()}<nav class="w-full min-h-[73px] z-40 relative flex flex-row items-start min-[767px]:items-center justify-between"> ${type !== "lightBg" ? renderTemplate`${renderComponent($$result, "Logo", $$Logo, {})}` : renderTemplate`${renderComponent($$result, "LogoDark", $$LogoDark, {})}`} <div class="flex flex-row justify-end items-stretch gap-[80px]"> <div class="hidden min-[1100px]:flex items-center"> ${renderComponent($$result, "LineMenu", $$LineMenu, { "type": type, "links": links })} </div> ${userInfo && renderTemplate`<div class="hidden min-[900px]:flex items-center"> ${renderComponent($$result, "UserInfo", $$UserInfo, { "name": userInfo.name, "avatarUrl": userInfo.avatarUrl })} </div>`} <div class="flex justify-end items-center mt-[10px] min-[767px]:mt-0"> ${renderComponent($$result, "BurgerMenu", $$BurgerMenu, { "type": type, "links": links })} </div> </div> </nav>`;
-}, "/Users/mac/Documents/Work/React/evra2/src/components/shared/topMenu/RegularMenu.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/components/shared/topMenu/RegularMenu.astro", void 0);
 
 export { $$RegularMenu as $ };

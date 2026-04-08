@@ -1,8 +1,8 @@
 import { c as createComponent } from './astro-component_J4ViFM41.mjs';
 import { T as renderTemplate, C as maybeRenderHead } from './sequence_BbkuQ6gj.mjs';
-import { r as renderComponent } from './server_jhl4VimB.mjs';
-import { $ as $$RegularMenu } from './RegularMenu_C-KzrL6c.mjs';
-import { $ as $$Layout } from './Layout_BHRDJuJp.mjs';
+import { r as renderComponent } from './server_Dg96Osvs.mjs';
+import { $ as $$RegularMenu } from './RegularMenu_DMoBXt3a.mjs';
+import { $ as $$Layout } from './Layout_DzAWaumG.mjs';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -115,9 +115,9 @@ const $$Restore = createComponent(async ($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "noindex": true }, { "default": async ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="content flex flex-col"> ${renderComponent($$result2, "RegularMenu", $$RegularMenu, { "type": "lightBg" })} <div class="inner-content grid grid-cols-1 min-[1000px]:grid-cols-2 gap-[50px] items-start justify-start gap-y-[60px]"> <div class="flex flex-col justify-start"> <h1>Восстановление<br>пароля</h1> <div class="max-w-[430px] mt-[30px]">
 Введите email, указанный при регистрации. Мы отправим ссылку для создания нового пароля.
 </div> </div> <div> ${renderComponent($$result2, "RestoreForm", RestoreForm, { "client:load": true, "client:component-hydration": "load", "client:component-path": "@/components/auth/restoreForm/RestoreForm", "client:component-export": "RestoreForm" })} </div> </div> </section> ` })}`;
-}, "/Users/mac/Documents/Work/React/evra2/src/pages/auth/restore.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/pages/auth/restore.astro", void 0);
 
-const $$file = "/Users/mac/Documents/Work/React/evra2/src/pages/auth/restore.astro";
+const $$file = "/Users/mac/Documents/Work/React/evrazia/src/pages/auth/restore.astro";
 const $$url = "/auth/restore/";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

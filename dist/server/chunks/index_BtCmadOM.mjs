@@ -1,10 +1,10 @@
 import { c as createComponent } from './astro-component_J4ViFM41.mjs';
 import { T as renderTemplate, C as maybeRenderHead } from './sequence_BbkuQ6gj.mjs';
-import { r as renderComponent } from './server_jhl4VimB.mjs';
-import { $ as $$Layout } from './Layout_BHRDJuJp.mjs';
+import { r as renderComponent } from './server_Dg96Osvs.mjs';
+import { $ as $$Layout } from './Layout_DzAWaumG.mjs';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
-import { $ as $$RegularMenu } from './RegularMenu_C-KzrL6c.mjs';
+import { $ as $$RegularMenu } from './RegularMenu_DMoBXt3a.mjs';
 
 const TARGET_DATE = (/* @__PURE__ */ new Date("2026-04-07T19:00:00+03:00")).getTime();
 function pad(n) {
@@ -43,9 +43,9 @@ function CountdownTimer() {
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "noindex": true }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="content flex flex-col"> ${renderComponent($$result2, "RegularMenu", $$RegularMenu, { "type": "lightBg" })} ${renderComponent($$result2, "CountdownTimer", CountdownTimer, { "client:load": true, "client:component-hydration": "load", "client:component-path": "@/components/shared/CountdownTimer", "client:component-export": "default" })} </section> ` })}`;
-}, "/Users/mac/Documents/Work/React/evra2/src/pages/index.astro", void 0);
+}, "/Users/mac/Documents/Work/React/evrazia/src/pages/index.astro", void 0);
 
-const $$file = "/Users/mac/Documents/Work/React/evra2/src/pages/index.astro";
+const $$file = "/Users/mac/Documents/Work/React/evrazia/src/pages/index.astro";
 const $$url = "";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
